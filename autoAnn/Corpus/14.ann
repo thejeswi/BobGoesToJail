@@ -1,0 +1,192 @@
+T1	Bob 30 37	someone
+T2	FunctionOperation 27 29	If
+T3	UnaryPredicate 38 42	acts
+R1	BobUnary Arg1:T1 Arg2:T3	
+R2	BobFunction Arg1:T1 Arg2:T2	
+T4	BinaryPredicate 48 50	as
+R3	BobBinary Arg1:T1 Arg2:T4	
+T5	John 54 71	entity authorized
+R4	JohnBinary Arg1:T5 Arg2:T4	
+T6	BinaryPredicate 72 84	to represent
+R5	UnaryPredicateBinary Arg1:T3 Arg2:T6	
+T7	John 87 99	legal person
+R6	JohnBinary Arg1:T7 Arg2:T6	
+T8	BinaryPredicate 100 105	or as
+R7	JohnBinary Arg1:T7 Arg2:T8	
+T9	BinaryPredicate 108 117	member of
+R8	VerbBridge Arg1:T8 Arg2:T9	
+T10	Organization 118 132	such an entity
+R9	OrganizationBinary Arg1:T10 Arg2:T9	
+T11	BinaryPredicate 138 140	as
+T12	John 143 161	partner authorized
+T13	BinaryPredicate 162 174	to represent
+T14	Organization 177 199	commercial partnership
+R10	OrganizationBinary Arg1:T14 Arg2:T13	
+R11	JohnBinary Arg1:T12 Arg2:T13	
+R12	JohnBinary Arg1:T12 Arg2:T11	
+R13	BobBinary Arg1:T1 Arg2:T11	
+R14	UnaryPredicateBinary Arg1:T3 Arg2:T13	
+T15	BinaryPredicate 208 210	as
+R15	BobBinary Arg1:T1 Arg2:T15	
+T16	John 213 237	statutory representative
+T17	BinaryPredicate 238 240	of
+T18	John 241 248	another
+R16	JohnBinary Arg1:T16 Arg2:T15	
+R17	JohnBinary Arg1:T18 Arg2:T17	
+R18	JohnBinary Arg1:T16 Arg2:T17	
+T19	FunctionOperation 251 255	then
+R19	FunctionOperationUnary Arg1:T19 Arg2:T3	
+T20	LawCorpus 258 261	law
+T21	BinaryPredicate 263 281	according to which
+R20	LawCorpusBinary Arg1:T20 Arg2:T21	
+T22	Attribute 282 309	special personal attributes
+T23	Attribute 311 324	relationships
+T24	Attribute 328 376	circumstances (special personal characteristics)
+T25	BinaryPredicate 377 395	forms the basis of
+R21	LawCorpusBinary Arg1:T20 Arg2:T25	
+T26	Punishability 396 409	punishability
+R22	PunishabilityBinary Arg1:T26 Arg2:T25	
+T27	BinaryPredicate 411 438	shall also be applicable to
+R23	LawCorpusBinary Arg1:T20 Arg2:T27	
+T28	John 443 457	representative
+R24	JohnBinary Arg1:T28 Arg2:T27	
+R25	BobAttribute Arg1:T1 Arg2:T22	
+R26	BobAttribute Arg1:T1 Arg2:T23	
+R27	BobAttribute Arg1:T1 Arg2:T24	
+R28	FunctionLawCorpus Arg1:T19 Arg2:T20	
+T29	FunctionOperation 459 461	if
+T30	Attribute 468 483	characteristics
+R29	AttributeAttribute Arg1:T30 Arg2:T22	
+R30	AttributeAttribute Arg1:T30 Arg2:T23	
+R31	AttributeAttribute Arg1:T30 Arg2:T24	
+R32	FunctionOperationBinary Arg1:T29 Arg2:T27	
+R33	AttributeFunction Arg1:T30 Arg2:T29	
+T31	BinaryPredicate 484 511	do not, in deed, pertain to
+R34	AttributeBinary Arg1:T30 Arg2:T31	
+T32	John 512 515	him
+R35	JohnBinary Arg1:T32 Arg2:T31	
+T33	BinaryPredicate 517 532	but exist as to
+R36	LawCorpusBinary Arg1:T20 Arg2:T33	
+T34	John 537 543	person
+T35	UnaryPredicate 544 555	represented
+R37	JohnUnary Arg1:T34 Arg2:T35	
+R38	JohnBinary Arg1:T34 Arg2:T33	
+T36	FunctionOperation 562 564	If
+T37	John 569 574	owner
+T38	BinaryPredicate 575 577	of
+R39	JohnBinary Arg1:T37 Arg2:T38	
+T39	Organization 580 588	business
+R40	OrganizationBinary Arg1:T39 Arg2:T38	
+T40	BinaryPredicate 589 591	or
+R41	JohnBinary Arg1:T37 Arg2:T40	
+T41	John 592 623	someone otherwise so authorized
+R42	JohnBinary Arg1:T41 Arg2:T40	
+T42	BinaryPredicate 629 640	commissions
+T43	Bob 643 649	person
+R43	BobBinary Arg1:T43 Arg2:T42	
+R44	JohnBinary Arg1:T41 Arg2:T42	
+T44	BinaryPredicate 650 659	to manage
+R45	BobBinary Arg1:T43 Arg2:T44	
+T45	Organization 662 670	business
+R46	OrganizationBinary Arg1:T45 Arg2:T44	
+T46	UnaryPredicate 672 691	in whole or in part
+R47	OrganizationUnary Arg1:T45 Arg2:T46	
+T47	BinaryPredicate 693 695	or
+T48	BinaryPredicate 700 721	expressly commissions
+R48	UnaryPredicateBinary Arg1:T46 Arg2:T47	
+R49	VerbBridge Arg1:T47 Arg2:T48	
+T49	Bob 724 730	person
+R50	BobBinary Arg1:T49 Arg2:T48	
+T50	UnaryPredicate 731 774	to perform on his own responsibility duties
+R51	BobUnary Arg1:T49 Arg2:T50	
+T51	BinaryPredicate 775 797	which are incumbent on
+R52	BinaryPredicateUnary Arg1:T51 Arg2:T50	
+T52	John 802 807	owner
+T53	BinaryPredicate 808 810	of
+R53	JohnBinary Arg1:T52 Arg2:T51	
+R54	JohnBinary Arg1:T52 Arg2:T53	
+T54	Organization 815 823	business
+R55	OrganizationBinary Arg1:T54 Arg2:T53	
+T55	FunctionOperation 826 832	and if
+R56	FunctionOperationBinary Arg1:T55 Arg2:T48	
+R57	FunctionOperationBinary Arg1:T55 Arg2:T42	
+T56	Bob 838 844	person
+R58	BobFunction Arg1:T56 Arg2:T55	
+T57	BinaryPredicate 845 865	acts on the basis of
+R59	BobBinary Arg1:T56 Arg2:T57	
+T58	NPA 871 881	commission
+R60	NPABinary Arg1:T58 Arg2:T57	
+T59	FunctionOperation 883 887	then
+T60	LawCorpus 890 893	law
+R61	FunctionLawCorpus Arg1:T59 Arg2:T60	
+T61	BinaryPredicate 895 913	according to which
+R62	LawCorpusBinary Arg1:T60 Arg2:T61	
+T62	Attribute 914 946	special personal characteristics
+R63	AttributeBinary Arg1:T62 Arg2:T61	
+T63	BinaryPredicate 947 963	are the basis of
+R64	AttributeBinary Arg1:T62 Arg2:T63	
+T64	Punishability 964 977	punishability
+R65	PunishabilityBinary Arg1:T64 Arg2:T63	
+T65	BinaryPredicate 978 1005	shall also be applicable to
+R66	LawCorpusBinary Arg1:T60 Arg2:T65	
+T66	John 1010 1016	person
+T67	UnaryPredicate 1017 1029	commissioned
+R67	JohnUnary Arg1:T66 Arg2:T67	
+R68	JohnBinary Arg1:T66 Arg2:T65	
+T68	FunctionOperation 1031 1033	if
+T69	Attribute 1040 1055	characteristics
+R69	AttributeFunction Arg1:T69 Arg2:T68	
+T70	BinaryPredicate 1056 1082	do not, indeed, pertain to
+R70	AttributeBinary Arg1:T69 Arg2:T70	
+T71	John 1083 1086	him
+R71	JohnBinary Arg1:T71 Arg2:T70	
+T72	BinaryPredicate 1088 1103	but exist as to
+R72	AttributeBinary Arg1:T69 Arg2:T72	
+T73	John 1108 1113	owner
+T74	BinaryPredicate 1114 1116	of
+T75	Organization 1121 1129	business
+R73	JohnBinary Arg1:T73 Arg2:T74	
+R74	OrganizationBinary Arg1:T75 Arg2:T74	
+R75	JohnBinary Arg1:T73 Arg2:T72	
+R76	FunctionOperationUnary Arg1:T68 Arg2:T67	
+R77	FunctionJohn Arg1:T36 Arg2:T37	
+T76	BinaryPredicate 1131 1152	Within the meaning of
+T77	LawLink 1153 1163	Sentence 1
+R78	LawLinkBinary Arg1:T77 Arg2:T76	
+T78	Organization 1168 1178	enterprise
+R79	OrganizationBinary Arg1:T78 Arg2:T76	
+T79	BinaryPredicate 1179 1199	is the equivalent of
+T80	Organization 1202 1210	business
+R80	OrganizationBinary Arg1:T80 Arg2:T79	
+R81	OrganizationBinary Arg1:T78 Arg2:T79	
+T81	FunctionOperation 1212 1214	If
+T82	John 1215 1222	someone
+R82	FunctionJohn Arg1:T81 Arg2:T82	
+T83	BinaryPredicate 1223 1243	acts on the basis of
+R83	JohnBinary Arg1:T82 Arg2:T83	
+T84	NPA 1246 1270	corresponding commission
+R84	NPABinary Arg1:T84 Arg2:T83	
+T85	Organization 1278 1284	agency
+T86	BinaryPredicate 1271 1274	for
+R85	NPABinary Arg1:T84 Arg2:T86	
+R86	OrganizationBinary Arg1:T85 Arg2:T86	
+T87	BinaryPredicate 1285 1309	which performs duties of
+R87	OrganizationBinary Arg1:T85 Arg2:T87	
+T88	NPA 1310 1331	public administration
+R88	NPABinary Arg1:T88 Arg2:T87	
+T89	FunctionOperation 1333 1337	then
+R89	FunctionFunction Arg1:T81 Arg2:T89	
+T90	LawLink 1338 1376	Sentence 1 (3) Subsections (1) and (2)
+R90	FunctionLawLink Arg1:T89 Arg2:T90	
+T91	BinaryPredicate 1377 1404	shall also be applicable if
+R91	LawLinkBinary Arg1:T90 Arg2:T91	
+T92	Act 1409 1418	legal act
+R92	ActBinary Arg1:T92 Arg2:T91	
+T93	BinaryPredicate 1425 1445	was intended to form
+R93	ActBinary Arg1:T92 Arg2:T93	
+T94	UnaryPredicate 1450 1486	basis of the power of representation
+R94	BinaryPredicateUnary Arg1:T93 Arg2:T94	
+T95	BinaryPredicate 1487 1489	or
+R95	UnaryPredicateBinary Arg1:T94 Arg2:T95	
+T96	UnaryPredicate 1494 1508	agency is void
+R96	BinaryPredicateUnary Arg1:T95 Arg2:T96	
