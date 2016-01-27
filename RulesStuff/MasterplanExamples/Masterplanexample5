@@ -1,0 +1,117 @@
+RULES FOUND: Unary: WHNP along standing
+	     Unary: NP->PP->NP
+	     Unary: along standing NP
+
+(ROOT
+  (SBARQ
+    (WHNP
+      (WHNP (WP Whoever))
+      (SBAR (IN upon)
+        (S
+          (NP
+            (NP (NN commission))
+            (PP (IN of)
+              (NP (DT the) (NN act))))
+          (VP (VBZ is)
+            (PP (IN under)
+              (NP
+                (NP (CD fourteen) (NNS years))
+                (PP (IN of)
+                  (NP (NN age)))))))))
+    (SQ
+      (VP (VBZ lacks)
+        (NP (NN capacity))
+        (S
+          (VP (TO to)
+            (VP (VB be)
+              (VP (VBN adjudged)
+                (S
+                  (ADJP (JJ guilty)))))))))))
+
+STEP1:
+
+(ROOT
+  (SBARQ
+    (WHNP
+      (WHNP (WP Whoever)) //Unary
+      (SBAR (IN upon)
+        (S
+          (NP
+            (NP (NN commission)) //Unary
+            (PP (IN of)  //Unary
+              (NP (DT the) (NN act)))) // Unary
+          (VP (VBZ is)
+            (PP (IN under)
+              (NP
+                (NP (CD fourteen) (NNS years)) //Unary
+                (PP (IN of)	//Unary
+                  (NP (NN age)))))))))	//Unary
+    (SQ
+      (VP (VBZ lacks)
+        (NP (NN capacity)) //Unary
+        (S
+          (VP (TO to)
+            (VP (VB be)
+              (VP (VBN adjudged)
+                (S
+                  (ADJP (JJ guilty)))))))))))
+STEP2:
+
+(ROOT
+  (SBARQ
+      (SBAR (IN upon)
+        (S
+          (VP (VBZ is)
+            (PP (IN under)
+    (SQ
+      (VP (VBZ lacks)
+        (S
+          (VP (TO to)
+            (VP (VB be)
+              (VP (VBN adjudged)
+                (S
+                  (ADJP (JJ guilty)))))))))))
+
+no keywords found
+
+STEP3:
+
+
+
+(ROOT
+  (SBARQ
+      (SBAR (IN upon) //Binary
+        (S
+          (VP (VBZ is)//Binary
+            (PP (IN under)//Binary
+    (SQ
+      (VP (VBZ lacks)//Binary
+        (S
+          (VP (TO to)//Binary
+            (VP (VB be)//Binary
+              (VP (VBN adjudged)//Binary
+                (S
+                  (ADJP (JJ guilty)))))))))))//Binary
+
+finished
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

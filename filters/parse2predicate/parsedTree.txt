@@ -1,0 +1,61 @@
+(ROOT
+  (SBARQ
+    (Unary (WP Whoever))
+    (SQ
+      (VP
+        (PP
+          (Func upon)
+          (Unary
+            (NP (NN commission))
+            (PP (Binary of) (NP (DT the) (NN act)))))
+        (Binary is)
+        (ADJP
+          (Binary incapable)
+          (PP
+            (Binary of)
+            (S
+              (VP
+                (VP
+                  (Binary appreciating)
+                  (Unary
+                    (NP (DT the) (NNS wrongfulness))
+                    (PP (Binary of) (NP (DT the) (NN act)))))
+                (Func or)
+                (VP
+                  (Binary acting)
+                  (PP
+                    (Binary in)
+                    (Unary
+                      (NP (NN accordance))
+                      (PP
+                        (Binary with)
+                        (NP (Binary such) (NN appreciation)))))
+                  (Unary
+                    (ADJP
+                      (Binary due)
+                      (PP
+                        (Binary to)
+                        (NP
+                          (NP
+                            (DT a)
+                            (Binary pathological)
+                            (Binary emotional)
+                            (NN disorder))
+                          (, ,)
+                          (NP
+                            (NP
+                              (Binary profound)
+                              (NN consciousness)
+                              (NN disorder))
+                            (, ,)
+                            (NP (Binary mental) (NN defect))
+                            (Func or)
+                            (NP
+                              (DT any)
+                              (Binary other)
+                              (Binary serious)
+                              (Binary emotional)
+                              (NN abnormality)))
+                          (, ,))))
+                    (NNS acts))
+                  (PP (Binary without) (Unary (NN guilt))))))))))))

@@ -1,0 +1,5 @@
+*SSH to brat server
+git commit
+git push
+*Exit SSH
+git pull

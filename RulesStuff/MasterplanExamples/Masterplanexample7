@@ -1,0 +1,111 @@
+RULES FOUND: UnaryPredicate: alone standing NP
+	     UnaryPredicate: NP->PP->NP
+	     UnaryPredicate: NP followedby CC (function)
+	     UnaryPredicate: NN lone standing
+
+(ROOT
+  (SBAR (IN If)
+    (S
+      (S
+        (NP (DT the) (NN perpetrator))
+        (VP (VBZ exceeds)
+          (S
+            (NP
+              (NP (DT the) (NNS limits))
+              (PP (IN of)
+                (NP (JJ necessary) (NN defense))))
+            (ADJP (JJ due)
+              (PP (TO to)
+                (NP (NN confusion) (, ,) (NN fear)
+                  (CC or)
+                  (NN fright)))))))
+      (, ,) (RB then)
+      (S
+        (NP (PRP he))
+        (VP (MD shall) (RB not)
+          (VP (VB be)
+            (VP (VBN punished))))))))
+
+STEP1: 
+
+(ROOT
+  (SBAR (IN If)
+    (S
+      (S
+        (NP (DT the) (NN perpetrator)) //UnaryPredicate
+        (VP (VBZ exceeds)
+          (S
+            (NP
+              (NP (DT the) (NNS limits)) //UnaryPredicate
+              (PP (IN of)		//UnaryPredicate
+                (NP (JJ necessary) (NN defense))))	//UnaryPredicate
+            (ADJP (JJ due)
+              (PP (TO to)
+                (NP (NN confusion) (, ,) (NN fear) ////UnaryPredicate
+                  (CC or)
+                  (NN fright)))))))	//UnaryPredicate
+      (, ,) (RB then)
+      (S
+        (NP (PRP he))	//UnaryPredicate
+        (VP (MD shall) (RB not)
+          (VP (VB be)
+            (VP (VBN punished))))))))
+
+STEP2:
+
+(ROOT
+  (SBAR (IN If) //function
+    (S
+      (S
+        (VP (VBZ exceeds)
+          (S
+            (ADJP (JJ due)
+              (PP (TO to)
+                  (CC or) //function
+      (, ,) (RB then) //function
+      (S
+        (VP (MD shall) 
+	      (RB not) //function
+          (VP (VB be)
+            (VP (VBN punished))))))))
+
+STEP3:
+
+(ROOT
+    (S
+      (S
+        (VP (VBZ exceeds) //binary
+          (S
+            (ADJP (JJ due)//binary
+              (PP (TO to)//binary
+      (S
+        (VP (MD shall) //binary
+          (VP (VB be)//binary
+            (VP (VBN punished))))))))//binary
+
+finished
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

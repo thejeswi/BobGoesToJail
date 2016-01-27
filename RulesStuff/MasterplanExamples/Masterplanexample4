@@ -1,0 +1,78 @@
+RULES FOUND: UnaryPredicate: NP -> PP -> NP always belong together as one UnaryPredicate
+	     UnaryPredicate: along standing (eg. followed by VP or ADVP) NPs are always UnaryPredicates
+
+(ROOT
+  (S
+    (NP (RB Only) (JJ intentional) (NN conduct))
+    (VP (VBZ is)
+      (ADJP (JJ punishable))
+      (, ,)
+      (SBAR (IN unless)
+        (S
+          (NP (DT the) (NN law))
+          (ADVP (RB expressly))
+          (VP (VBZ provides)
+            (NP
+              (NP (NN punishment))
+              (PP (IN for)
+                (NP (JJ negligent) (NN conduct))))))))))
+
+STEP1:
+
+(ROOT
+  (S
+    (NP (RB Only) (JJ intentional) (NN conduct)) //UnaryPredicate
+    (VP (VBZ is)
+      (ADJP (JJ punishable))
+      (, ,)
+      (SBAR (IN unless)
+        (S
+          (NP (DT the) (NN law)) //UnaryPredicate
+          (ADVP (RB expressly))
+          (VP (VBZ provides)
+            (NP
+              (NP (NN punishment)) //UnaryPredicate
+              (PP (IN for) //UnaryPredicate
+                (NP (JJ negligent) (NN conduct)))))))))) //UnaryPredicate
+
+STEP2: find function keywords
+
+(ROOT
+  (S
+    (VP (VBZ is)
+      (ADJP (JJ punishable))
+      (, ,)
+      (SBAR (IN unless)
+        (S
+          (ADVP (RB expressly))
+          (VP (VBZ provides)
+
+none found
+
+STEP3: mark everything else as Binary
+
+(ROOT
+  (S
+    (VP (VBZ is) //BinaryPredicate
+      (ADJP (JJ punishable))//BinaryPredicate
+      (, ,)
+      (SBAR (IN unless)//BinaryPredicate
+        (S
+          (ADVP (RB expressly))//BinaryPredicate
+          (VP (VBZ provides)//BinaryPredicate
+
+finished
+
+
+
+
+
+
+
+
+
+
+
+
+
+

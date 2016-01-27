@@ -1,0 +1,11 @@
+Unary predicate rules:
+NP PP
+VP Which includes VBZ in the beginning, the rest is not verbs, then it is a unary predicate
+NP with no more NP phrases!
+VP Which includes VBZ in the beginning, the rest is not verbs, then it is a unary predicate
+If there is only one more NP within the NP and there is a POS after the NP, which as an NN
+
+Binary predicate rules:
+single VBZ
+VP recursivly until a NP
+VP followed by IN together is a binary predicate 

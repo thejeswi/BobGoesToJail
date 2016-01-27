@@ -1,0 +1,79 @@
+
+STEP 1: indicate and remove Unary predicates
+
+(ROOT
+  (S
+    [(NP (DT An) (NN act)) ]	//Unary simple NP followed by VP
+    (VP (MD may)
+      (ADVP (RB only))
+      (VP (VB be)
+        (VP (VBN punished)
+          (SBAR (IN if)
+            (S
+              [(NP (PRP$ its) (NN punishability))]	//Unary simple NP followed by VP
+              (VP (VBD was)
+                (VP (VBN determined)
+                  (PP (IN by)
+                    [(NP (NN law))]	//Unary simple NP followed by VP
+		    )
+                  (SBAR (IN before)
+                    (S
+                      [(NP (DT the) (NN act))]	//Unary simple NP followed by VP
+                      (VP (VBD was)
+                        (VP (VBN committed))))))))))))))
+(PP (IN by)
+		  (SBAR (IN before)
+
+SWITCH STEP 2 AND STEP 3 !
+
+STEP 2: Find non IN tags and make them Binary
+(VP (MD may)
+      (ADVP (RB only)) //Binary
+      (VP (VB be)	//Binary
+        (VP (VBN punished) //Binary
+          (SBAR (IN if)
+            (S(PP (IN by)
+		  (SBAR (IN before)
+	    (VP (VBD was) // Binary
+                (VP (VBN determined) //Binary
+                  (PP (IN by)
+		  (SBAR (IN before)
+                    (S
+		    (VP (VBD was) //Binary
+                        (VP (VBN committed)))))))))))))) //Binary
+
+
+STEP 3: Find Functions (Keywords)
+
+(SBAR (IN if) //Function
+	(PP (IN by)
+		  (SBAR (IN before)
+
+
+STEP 4: Make rest Binary
+
+
+(PP (IN by) // Binary
+		  (SBAR (IN before) //Binary
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

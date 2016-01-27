@@ -1,0 +1,58 @@
+RULES: WHNP -> Unarypredicate
+
+(ROOT
+  (S
+    (NP (JJ German) (JJ criminal) (NN law))
+    (VP (MD shall)
+      (VP (VB apply)
+        (PP (TO to)
+          (NP
+            (NP (NNS acts))
+            (, ,)
+            (SBAR
+              (WHNP (WDT which))
+              (S
+                (VP (VBD were)
+                  (VP (VBN committed)
+                    (ADVP (RB domestically))))))))))))
+
+STEP1:
+ 
+(ROOT
+  (S
+    (NP (JJ German) (JJ criminal) (NN law)) //UnaryPredicate
+    (VP (MD shall) 
+      (VP (VB apply)
+        (PP (TO to)
+          (NP
+            (NP (NNS acts)) // Unarypredicate
+            (, ,)
+            (SBAR
+              (WHNP (WDT which)) //UnaryPredicate
+              (S
+                (VP (VBD were)
+                  (VP (VBN committed)
+                    (ADVP (RB domestically))))))))))))
+
+FIRST SEARCH FOR FUNCTION KEYWORDS!
+
+STEP2:
+(ROOT
+  (S
+   
+    (VP (MD shall) //Binary
+      (VP (VB apply) //Binary
+        (PP (TO to) //Binary
+            (, ,)
+            (SBAR
+              (S
+                (VP (VBD were)  //Binary
+                  (VP (VBN committed) //Binary
+                    (ADVP (RB domestically)))))))))))) //Binary
+
+finished
+
+STEP3
+No IN's
+
+STEP4

@@ -1,0 +1,72 @@
+RULES FOUND: UnaryPredicate: NP alone standing, follwed by VP
+	     UnaryPredicate: NP-> PP->NP->PP->NP same Rule as before in other MasterplanExamples
+
+(ROOT
+  (S
+    (NP (DT Every) (NN participant))
+    (VP (MD shall)
+      (VP (VB be)
+        (VP (VBN punished)
+          (PP (VBG according)
+            (PP (TO to)
+              (NP
+                (NP (PRP$ his) (JJ own) (NN guilt) (NN irrespective))
+                (PP (IN of)
+                  (NP
+                    (NP (DT the) (NN guilt))
+                    (PP (IN of)
+                      (NP (DT the) (JJ other)))))))))))))
+
+STEP1:
+
+(ROOT
+  (S
+    (NP (DT Every) (NN participant)) //UnaryPredicate
+    (VP (MD shall)
+      (VP (VB be)
+        (VP (VBN punished)
+          (PP (VBG according)
+            (PP (TO to)
+              (NP
+                (NP (PRP$ his) (JJ own) (NN guilt) (NN irrespective)) //UnaryPredicate
+                (PP (IN of) 			//UnaryPredicate
+                  (NP
+                    (NP (DT the) (NN guilt))//UnaryPredicate
+                    (PP (IN of)//UnaryPredicate
+                      (NP (DT the) (JJ other)))))))))))))//UnaryPredicate
+
+STEP2:
+
+no keywords found
+
+STEP3:
+
+(ROOT
+  (S
+    (VP (MD shall) //BinaryPredicate
+      (VP (VB be)//BinaryPredicate
+        (VP (VBN punished)//BinaryPredicate
+          (PP (VBG according)//BinaryPredicate
+            (PP (TO to)//BinaryPredicate
+
+finished
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,222 @@
+RULES: 
+
+(ROOT
+  (S
+    (NP (JJ German) (JJ criminal) (NN law)) 
+    (VP (MD shall)
+      (VP (VB apply) (, ,)
+        (ADVP (RB regardless)
+          (PP (IN of)
+            (NP
+              (NP (DT the) (NN law))
+              (PP (IN of)
+                (NP (DT the) (NN place))))))
+        (SBAR
+          (WHADVP (WRB where))
+          (S
+            (NP (DT the) (NN act))
+            (VP (VBD was)
+              (ADJP (JJ committed))
+              (, ,)
+              (PP
+                (PP (TO to)
+                  (NP
+                    (NP (NNS acts))
+                    (SBAR
+                      (WHNP (WDT which))
+                      (S
+                        (VP (VBP are)
+                          (VP (VBN committed)
+                            (PP (IN on)
+                              (NP (DT a) (NN ship)))))))))
+                (CC or)
+                (PP (IN in)
+                  (NP
+                    (NP (DT an) (NN aircraft))
+                    (, ,)
+                    (SBAR
+                      (WHNP (WDT which))
+                      (S
+                        (VP (VBZ is)
+                          (VP (VBN entitled)
+                            (S
+                              (VP (TO to)
+                                (VP (VB fly)
+                                  (NP
+                                    (NP (DT the) (JJ federal) (NN flag))
+                                    (CC or)
+                                    (NP
+                                      (NP (DT the) (JJ national) (NN insignia))
+                                      (PP (IN of)
+                                        (NP
+                                          (NP (DT the) (NNP Federal) (NNP Republic))
+                                          (PP (IN of)
+                                            (NP (NNP Germany))))))))))))))))))))))
+    (. .)))
+
+STEP1:
+
+(ROOT
+  (S
+    (NP (JJ German) (JJ criminal) (NN law)) //Unary
+    (VP (MD shall)
+      (VP (VB apply) (, ,)
+        (ADVP (RB regardless)
+          (PP (IN of)
+            (NP
+              (NP (DT the) (NN law)) //Unary
+              (PP (IN of)
+                (NP (DT the) (NN place)))))) //Unary
+        (SBAR
+          (WHADVP (WRB where))
+          (S
+            (NP (DT the) (NN act)) /Unary
+            (VP (VBD was)
+              (ADJP (JJ committed))
+              (, ,)
+              (PP
+                (PP (TO to)
+                  (NP
+                    (NP (NNS acts)) // Unary
+                    (SBAR
+                      (WHNP (WDT which)) //Unary
+                      (S
+                        (VP (VBP are)
+                          (VP (VBN committed)
+                            (PP (IN on)
+                              (NP (DT a) (NN ship))))))))) //Unary
+                (CC or)
+                (PP (IN in)
+                  (NP
+                    (NP (DT an) (NN aircraft)) //Unary
+                    (, ,)
+                    (SBAR
+                      (WHNP (WDT which)) /Unary
+                      (S
+                        (VP (VBZ is)
+                          (VP (VBN entitled)
+                            (S
+                              (VP (TO to)
+                                (VP (VB fly)
+                                  (NP
+                                    (NP (DT the) (JJ federal) (NN flag)) //Unary
+                                    (CC or)
+                                    (NP
+                                      (NP (DT the) (JJ national) (NN insignia))//Unary
+                                      (PP (IN of)
+                                        (NP
+                                          (NP (DT the) (NNP Federal) (NNP Republic)) //Unary
+                                          (PP (IN of)
+                                            (NP (NNP Germany))))))))))))))))))))))//Unary
+    (. .)))
+
+
+
+STEP2:
+
+
+(ROOT
+  (S
+    (VP (MD shall)
+      (VP (VB apply) (, ,)
+        (ADVP (RB regardless)
+          (PP (IN of)
+        (SBAR
+          (WHADVP (WRB where))
+          (S
+            (VP (VBD was)
+              (ADJP (JJ committed))
+              (, ,)
+              (PP
+                (PP (TO to)
+                  (NP
+                      (S
+                        (VP (VBP are)
+                          (VP (VBN committed)
+                            (PP (IN on)
+                (CC or)
+                (PP (IN in)
+                  (NP
+                      (S
+                        (VP (VBZ is)
+                          (VP (VBN entitled)
+                            (S
+                              (VP (TO to)
+                                (VP (VB fly)
+                                  (NP
+                                    (CC or)
+                                    (NP
+
+STEP3:  Search for Functions
+
+
+
+(ROOT
+  (S
+    (VP (MD shall)
+      (VP (VB apply) (, ,)
+        (ADVP (RB regardless)
+          (PP (IN of)
+        (SBAR
+          (WHADVP (WRB where))
+          (S
+            (VP (VBD was)
+              (ADJP (JJ committed))
+              (, ,)
+              (PP
+                (PP (TO to)
+                  (NP
+                      (S
+                        (VP (VBP are)
+                          (VP (VBN committed)
+                            (PP (IN on)
+                (CC or) //Function
+                (PP (IN in)
+                  (NP
+                      (S
+                        (VP (VBZ is)
+                          (VP (VBN entitled)
+                            (S
+                              (VP (TO to)
+                                (VP (VB fly)
+                                  (NP
+                                    (CC or) //Function
+                                    (NP
+
+STEP4 mark everything else as Binary
+
+
+
+(ROOT
+  (S
+    (VP (MD shall) //Binary
+      (VP (VB apply) (, ,)//Binary
+        (ADVP (RB regardless)//Binary
+          (PP (IN of)//Binary
+        (SBAR
+          (WHADVP (WRB where))//Binary
+          (S
+            (VP (VBD was)//Binary
+              (ADJP (JJ committed))//Binary
+              (, ,)
+              (PP
+                (PP (TO to)//Binary
+                  (NP
+                      (S
+                        (VP (VBP are)//Binary
+                          (VP (VBN committed)//Binary
+                            (PP (IN on)//Binary
+                (PP (IN in)//Binary
+                  (NP
+                      (S
+                        (VP (VBZ is)//Binary
+                          (VP (VBN entitled)//Binary
+                            (S
+                              (VP (TO to)//Binary
+                                (VP (VB fly)//Binary
+
+finished
+ 
+
+
+

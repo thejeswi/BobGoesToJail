@@ -1,0 +1,321 @@
+(ROOT
+  (S
+    [Unary
+    (NP
+      (NP (DT A) (NN child))
+      (PP (IN under)
+        (ADJP
+          (NP (CD 10) (NNS years))
+          (JJ old))))
+    ]
+    (VP 
+    [Binary(VBZ is)]
+    [Function (RB not)]
+    [Unary
+      (ADJP (RB criminally) (JJ responsible)]
+        [Binary(PP (IN for)]
+          [Unary(NP (DT an) (NN offence))]))
+    ])
+    (. .)))
+
+
+(ROOT  
+(S
+[ Unary NP -> NP PP
+(NP      
+(NP 
+(DT A) 
+(NN child))      
+(PP 
+(IN under)        
+(ADJP          
+(NP 
+(CD 10) 
+(NNS years))          
+(JJ old))))
+]
+    
+(VP
+[Binary VBZ 
+(VBZ is)
+]
+[Function
+(RB not) 
+]     
+[Unary VP Which includes VBZ in the beginning, the rest is not verbs, then it is a unary predicate
+(ADJP 
+(RB criminally) 
+(JJ responsible)        
+(PP 
+(IN for)          
+(NP 
+(DT an) 
+(NN  offence)))))    
+(. .)
+])
+)
+    
+    
+
+(ROOT  
+    (S    
+    [Unary NP with no more NP phrases!
+        (NP 
+        (DT A) 
+        (NN person))
+    ]
+    (VP VBZ
+    [Binary
+    (VBZ is)
+    ] 
+    [function
+    (RB not) 
+    ]     
+    [Unary VP Which includes VBZ in the beginning, the rest is not verbs, then it is a unary predicate
+    (ADJP 
+    (RB criminally) 
+    (JJ responsible)        
+    (PP 
+    (IN for)          
+    (NP 
+    (DT an) 
+    (NN offence))))
+    ]      
+    (SBAR 
+    [Function
+    (IN if)  
+    ]      
+    (S          
+    (NP            
+    [Unary If there is only one more NP within the NP and there is a POS after the NP, which as an NN
+    (NP 
+    (DT the) 
+    (NN person) 
+    (POS 's))   
+    (NN conduct)
+    ]
+    (S              
+    (VP 
+    [Binary
+    (VBG constituting)
+    ]                
+    [Unary
+    (NP 
+    (DT the) 
+    (NN offence))
+    ])))          
+    (VP 
+    [Binary
+    (VBD was)
+    ]            
+    (PP 
+    (IN as)              
+    (NP                
+    [Unary NP
+    (NP 
+    (DT a) 
+    (NN result))
+    ]                
+    (PP 
+    (IN of)                  
+    [Unary NP
+    (NP 
+    (NN intoxication))
+    ]
+    )                
+    [Binary
+    (SBAR                  
+    (WHNP
+    (WDT that))                  
+    (S                    
+    (VP 
+    (VBD was) 
+    (RB not)                      
+    (VP 
+    (VBN self‑induced)))
+    ))
+    ]
+    ))))))    
+    (. .))
+)
+
+
+
+(ROOT
+  (S
+    [Unary Predicate
+    (NP (JJ German) (JJ criminal) (NN law))
+    ]
+    [Binary: VP till you find an NP is BP
+    (VP (MD shall)
+      (VP (VB apply)
+        (PP (TO to)
+        ]
+          (NP
+            [Unary
+            (NP (NNS acts))
+            ]
+            (, ,)
+            [Binary
+            (SBAR
+              (WHNP (WDT which))
+              (S
+                (VP (VBD were)
+                  (VP (VBN committed)
+                    (ADVP (RB domestically))))))]
+                    ))))
+    (. .)))
+
+
+(ROOT
+  (S
+    [Unary
+    (NP (DT The) (NN court))
+    ]
+    [Binary
+    (VP (MD may)
+      (ADVP (RB also))
+      (VP (VB make) (, ,) (VB modify)
+        (CC or)
+        (VB vacate)
+    ]
+        [Unary NP+ADVP
+        (NP (NNS decisions))
+        (ADVP (JJ pursuant)
+          (PP (TO to)
+            (NP (NNS Sections) (CD 56b) (TO to) (CD 56d))))
+        ]
+        ))
+    (. .)))
+
+
+
+(ROOT
+  (S
+    [Unary
+    (NP (DT Every) (NN participant))
+    ]
+    [Binary !!VP till you get a NP
+    (VP (MD shall)
+      (VP (VB be)
+        (VP (VBN punished)
+          (PP (VBG according)
+            (PP (TO to)
+            ]
+              [Unary
+              (NP
+                (NP (PRP$ his) (JJ own) (NN guilt) (NN irrespective))
+                (PP (IN of)
+                  (NP
+                    (NP (DT the) (NN guilt))
+                    (PP (IN of)
+                      (NP (DT the) (JJ other))))))
+                      ])))))
+    (. .)))
+
+
+
+
+(ROOT
+  (S
+    (NP
+      (SBAR
+        [Unary
+        (WHNP (WP Whoever))
+        ]
+        (S
+          [Binary
+          (ADVP (RB falsely))
+          (VP (VBZ takes)
+          ]
+            [Unary
+            (NP (DT an) (NN oath))
+            (PP (IN before)
+              (NP (DT a) (NN court)))
+            ])))
+      [Function
+      (CC or)
+      ]
+      [Unary
+      (NP
+        (NP (DT another) (NN agency))
+        (ADJP (JJ competent)
+          (S
+            (VP (TO to)
+              (VP (VB administer)
+                (NP (NNS oaths)))))))
+       ]
+    )
+    (, ,)
+    [Binary
+    (VP (MD shall)
+      (VP (VB be)
+        (VP (VBN punished)
+          (PP (IN with)
+          ]
+            [Unary
+            (NP
+              (NP (NN imprisonment))
+              (PP (IN for)
+                (NP
+                  (QP (DT no) (JJR less) (IN than) (CD one)))
+               )
+            )
+          )
+          (NP (NN year)
+          ]))))
+    (. .)))
+
+
+
+(ROOT
+  (S
+    (SBAR [Function (IN If)
+    ]
+      (S
+        [Unary
+        (NP (DT the) (NN extortion))
+        ]
+        (VP [Binary (VBZ is)
+          (ADJP (VBN committed)
+          ]
+            (PP 
+            [BInary (IN by)
+              (S
+                (VP (VBG using) ]
+                  (NP
+                    [Unary
+                    (NP
+                      (NP (NN force))
+                      (PP (IN against)
+                        (NP (DT a) (NN person))))
+                    ]
+                    [Function (CC or)
+                    ]
+                    [Unary
+                    (NP
+                      (NP (NNS threats))
+                      (PP (IN of)
+                        (NP (JJ imminent) (NN danger))))
+                        ])
+                  [Unary
+                  (PP (TO to)
+                    (NP (NN life)
+                    ]
+                      [Function (CC or)]
+                      [Unary (NN limb)])))))))))
+    (, ,)
+    
+    (ADVP (RB then))
+    (NP (DT the) (NN perpetrator))
+    [Binary
+    (VP (MD shall)
+      (VP (VB be)
+        (VP (VBN punished)]
+          [Unary
+          (NP (DT the) (JJ same))
+          (PP (IN as)
+            (NP (DT a) (NN robber)))
+          ])))
+    (. .)))
+
