@@ -60,14 +60,24 @@ def ifThereIsNo(tree, toNotMatch):
         return True
     for node in tree:
         if type(node) is ParentedTree:
+            print "toNotMatch", toNotMatch, str(node.label())
             if re.match(toNotMatch, str(node.label())):
+                print "If there is no", toNotMatch, str(node.label())
                 return False
+    return True
+
+def ifThereIsNoMatch(tree, toNotMatch):
+    if toNotMatch == '':
+        return True
+    print removeWP(tree)
+    if re.match(toNotMatch, removeWP(tree)):
+        return False
     return True
 
 def tagChanger(TreeString, SubTreeString, toChange, newValue):
     TreeString = removeWP(str(TreeString))
     SubTreeString = removeWP(str(SubTreeString))
-    toChange = re.sub("\^|\$",'', toChange)
+    toChange = re.sub("\^|\$",'', toChange) #Warning!!! Manual sub
     fixedSubTreeString = re.sub(toChange, newValue, SubTreeString, 1)
     #~ print fixedSubTreeString, newValue
     newTree = re.sub(re.escape(SubTreeString), fixedSubTreeString, TreeString, 1)
@@ -81,7 +91,7 @@ def findPredicate(parent, predicate, toMatch, toIgnore, found=None):
             if node.label() == predicate:
                 continue
             if re.match(toMatch, node.label()) != None:
-                print toMatch, "matches '", node.label(),"'"
+                #~ print toMatch, "matches '", node.label(),"'"
                 if ifThereIsNo(node, toIgnore):
                     found = node
                     #print node.label()
@@ -89,18 +99,18 @@ def findPredicate(parent, predicate, toMatch, toIgnore, found=None):
             found = findPredicate(node, predicate, toMatch, toIgnore, found)
     return found
 
-def findBinary(parent, predicate, toIgnore, found=None):
-    if found:
-        return found
-    for node in parent:
-        if type(node) is ParentedTree:
-            if node.label() == predicate:
-                continue
-        if ifThereIsNo(node, toIgnore):
-            found = node
-            return found
-            found = findPredicate(node, predicate, toMatch, toIgnore, found)
-    return found
+#~ def findBinary(parent, predicate, toIgnore, found=None):
+    #~ if found:
+        #~ return found
+    #~ for node in parent:
+        #~ if type(node) is ParentedTree:
+            #~ if node.label() == predicate:
+                #~ continue
+        #~ if ifThereIsNo(node, toIgnore):
+            #~ found = node
+            #~ return found
+            #~ found = findPredicate(node, predicate, toMatch, toIgnore, found)
+    #~ return found
 
 def replacePredicate(inputTree, predicate, toMatch, toIgnore):
     while findPredicate(inputTree, predicate, toMatch, toIgnore):
@@ -119,11 +129,11 @@ def replaceKeywordPredicates(inputTree):
     
     return inputTree
 
-def replaceBinaryPredicates(inputTree, predicate, toMatch, toIgnore):
-    while findPredicate(inputTree, predicate, toMatch, toIgnore):
-        unaryStr = removeWP(str(findPredicate(inputTree, predicate, toMatch, toIgnore)))
-        inputTree = tagChanger(inputTree, unaryStr, toMatch, predicate)
-    return inputTree
+#~ def replaceBinaryPredicates(inputTree, predicate, toMatch, toIgnore):
+    #~ while findPredicate(inputTree, predicate, toMatch, toIgnore):
+        #~ unaryStr = removeWP(str(findPredicate(inputTree, predicate, toMatch, toIgnore)))
+        #~ inputTree = tagChanger(inputTree, unaryStr, toMatch, predicate)
+    #~ return inputTree
 
 #def outputUnaries(inputTree):
 #    print findPredicate(inputTree, 'Unary', 'Unary', '')
@@ -132,18 +142,19 @@ if __name__ == "__main__":
     inputTree = toNLTKtree(parsedSent)
     inputTree = replaceKeywordPredicates(inputTree)
     #Rule for functions
-    inputTree = replacePredicate(inputTree, 'Func', 'CC', '')
+    #~ inputTree = replacePredicate(inputTree, 'Func', 'CC', '')
     #Rule for Unary
-    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', 'VP')
-    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', 'VP')
+    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', '(.*)VP(.*)')
+    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', '(.*)VP(.*)')
 
-    inputTree = replacePredicate(inputTree, 'Binary', 'VP', '^((?!V[A-Z].?).)*$')
-    inputTree = replacePredicate(inputTree, 'Binary', 'VB[A-Z]?', 'Unary|Func|Binary')
-    inputTree = replacePredicate(inputTree, 'Binary', 'JJ', 'Unary|Func|Binary')
-    inputTree = replacePredicate(inputTree, 'Binary', 'TO', 'Unary|Func|Binary')
-    inputTree = replacePredicate(inputTree, 'Binary', 'MD', 'Unary|Func|Binary')
-    inputTree = replacePredicate(inputTree, 'Binary', 'IN', 'Unary|Func|Binary')
+    #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '(.*)\((Unary|Func|Binary)(.*)')
+    #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '^((?!V[A-Z].?).)*$')
+    #~ inputTree = replacePredicate(inputTree, 'Binary', 'VB[A-Z]?', '(.*)(Unary|Func|Binary)(.*)')
+    #~ inputTree = replacePredicate(inputTree, 'Binary', 'JJ', '(.*)(Unary|Func|Binary)(.*)')
+    #~ inputTree = replacePredicate(inputTree, 'Binary', 'TO', '(.*)(Unary|Func|Binary)(.*)')
+    #~ inputTree = replacePredicate(inputTree, 'Binary', 'MD', '(.*)(Unary|Func|Binary)(.*)')
+    #~ inputTree = replacePredicate(inputTree, 'Binary', 'IN', '(.*)(Unary|Func|Binary)(.*)')
     
-    print inputTree
+    #~ print inputTree
     open("parsedTree.txt","w").write(str(inputTree))
     #outputUnaries(inputTree)

@@ -2,6 +2,9 @@ import json
 import datetime
 from enum import Enum
 
+
+###### Splitted Law Objects ###################
+
 class SentTypes(Enum):
     Undefined = 0
     BeginSent = 1
@@ -10,7 +13,6 @@ class SentTypes(Enum):
     EndSent = 4
     SubSent = 5
     SubSubSent = 6
-
 
 class law(object):
     def __init__(self):
@@ -41,6 +43,42 @@ class sentence(object):
                 "parentSentID": self.parentSentID,
                 "time":self.time
                 }
+###############################################
+
+
+###### Tree 2 Entity Relations ################
+
+
+class entity(object):
+    def __init__(self):
+        self.text = "Undefined",
+        self.entityType = "Undefined",
+        self.time = datetime.datetime.utcnow()
+    def out(self):
+        return {
+                "text" : self.text,
+                "entityType": self.entityType,
+                "time":self.time
+                }
+
+class entityLink(object):
+    def __init__(self):
+        self.EntityAID = "Undefined",
+        self.EntityBID = "Undefined",
+        self.time = datetime.datetime.utcnow()
+    def out(self):
+        return {
+                "EntityAID": self.EntityAID,
+		"EntityBID": self.EntityBID,
+                "time":self.time
+                }
+
+
+
+###############################################
+
+
+
 
 class annotation(object):
     def __init__(self):
@@ -59,7 +97,6 @@ class annotation(object):
 		"phrase": self.phrase,
                 "time": self.time
                 }
-
 
 
 class subLink_law_pos(object):
