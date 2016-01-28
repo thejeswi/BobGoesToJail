@@ -155,8 +155,8 @@ if __name__ == "__main__":
     #Rule for functions
     #~ inputTree = replacePredicate(inputTree, 'Func', 'CC', '')
     #Rule for Unary
-    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', '(.*)(VP|Func)(.*)')
-    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', '(.*)(VP|Func)(.*)')
+    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', '(.*)(VP|Func|VBG)(.*)')
+    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', '(.*)(VP|Func|VBG)(.*)')
 
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '(.*)\((Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '^((?!V[A-Z].?).)*$')
