@@ -20,7 +20,7 @@
                   (Unary
                     (NP (DT the) (NNS wrongfulness))
                     (PP (IN of) (NP (DT the) (NN act)))))
-                (CC or)
+                (Func or)
                 (VP
                   (VBG acting)
                   (PP
@@ -28,12 +28,12 @@
                     (Unary
                       (NP (NN accordance))
                       (PP (IN with) (NP (JJ such) (NN appreciation)))))
-                  (Unary
+                  (NP
                     (ADJP
                       (JJ due)
                       (PP
                         (TO to)
-                        (NP
+                        (Unary
                           (NP
                             (DT a)
                             (JJ pathological)
@@ -47,7 +47,7 @@
                               (NN disorder))
                             (, ,)
                             (NP (JJ mental) (NN defect))
-                            (CC or)
+                            (Func or)
                             (NP
                               (DT any)
                               (JJ other)
@@ -55,5 +55,5 @@
                               (JJ emotional)
                               (NN abnormality)))
                           (, ,))))
-                    (NNS acts))
+                    (VBG acts))
                   (PP (IN without) (Unary (NN guilt))))))))))))

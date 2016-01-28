@@ -1,5 +1,5 @@
 import nltk
-s = open("parsedTree.txt", "r").read()
+s = open("parsedTree.txt", "rU").read()
 tree = nltk.tree.Tree.fromstring(s)
 
 def getWordList(tree, wordList = []):
@@ -64,4 +64,5 @@ def sameStuffCombiner(listOfStuff):
 
 listOfStuff = traverseTree(tree, [])
 #~ print listOfStuff
-print sameStuffCombiner(listOfStuff)
+from pprint import pprint
+pprint(sameStuffCombiner(listOfStuff))

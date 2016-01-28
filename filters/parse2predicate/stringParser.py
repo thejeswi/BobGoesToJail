@@ -41,7 +41,7 @@ parsedSent = """(ROOT
                             (CC or)
                             (NP (DT any) (JJ other) (JJ serious) (JJ emotional) (NN abnormality)))
                           (, ,))))
-                    (NNS acts))
+                    (VBG acts))
                   (PP (IN without)
                     (NP (NN guilt))))))))))))
 """
@@ -60,9 +60,9 @@ def ifThereIsNo(tree, toNotMatch):
         return True
     for node in tree:
         if type(node) is ParentedTree:
-            print "toNotMatch", toNotMatch, str(node.label())
+            #~ print "toNotMatch", toNotMatch, str(node.label())
             if re.match(toNotMatch, str(node.label())):
-                print "If there is no", toNotMatch, str(node.label())
+                #~ print "If there is no", toNotMatch, str(node.label())
                 return False
     return True
 
@@ -79,8 +79,19 @@ def tagChanger(TreeString, SubTreeString, toChange, newValue):
     SubTreeString = removeWP(str(SubTreeString))
     toChange = re.sub("\^|\$",'', toChange) #Warning!!! Manual sub
     fixedSubTreeString = re.sub(toChange, newValue, SubTreeString, 1)
-    #~ print fixedSubTreeString, newValue
+    print fixedSubTreeString, toChange, newValue
     newTree = re.sub(re.escape(SubTreeString), fixedSubTreeString, TreeString, 1)
+    print "\n",newTree,"\n"
+    return toNLTKtree(newTree)
+
+def tagReplace(TreeString, SubTreeString, toChange, newValue):
+    TreeString = removeWP(str(TreeString))
+    SubTreeString = removeWP(str(SubTreeString))
+    toChange = re.sub("\^|\$",'', toChange) #Warning!!! Manual sub
+    fixedSubTreeString = re.sub(toChange, newValue, SubTreeString)
+    #~ print fixedSubTreeString, toChange, newValue
+    newTree = re.sub(re.escape(SubTreeString), fixedSubTreeString, TreeString)
+    #~ print "\n",newTree,"\n"
     return toNLTKtree(newTree)
 
 def findPredicate(parent, predicate, toMatch, toIgnore, found=None):
@@ -119,14 +130,14 @@ def replacePredicate(inputTree, predicate, toMatch, toIgnore):
     return inputTree
 
 def replaceKeywordPredicates(inputTree):
-    inputTree = tagChanger(inputTree, "(IN If)", "^IN$", "Func")
-    inputTree = tagChanger(inputTree, "(IN if)", "IN", "Func")
-    inputTree = tagChanger(inputTree, "(IN then)", "IN", "Func")
-    inputTree = tagChanger(inputTree, "(IN or)", "^IN$", "Func")
-    inputTree = tagChanger(inputTree, "(IN and)", "IN", "Func")
-    inputTree = tagChanger(inputTree, "(RB then)", "RB", "Func")
-    inputTree = tagChanger(inputTree, "(RB not)", "RB", "Func")
-    
+    inputTree = tagReplace(inputTree, "(IN If)", "^IN$", "Func")
+    inputTree = tagReplace(inputTree, "(IN if)", "^IN$", "Func")
+    inputTree = tagReplace(inputTree, "(IN then)", "^IN$", "Func")
+    inputTree = tagReplace(inputTree, "(IN or)", "^IN$", "Func")
+    inputTree = tagReplace(inputTree, "(IN and)", "^IN$", "Func")
+    inputTree = tagReplace(inputTree, "(RB then)", "^RB$", "Func")
+    inputTree = tagReplace(inputTree, "(RB not)", "^RB$", "Func")
+    inputTree = tagReplace(inputTree, "(CC or)", "^CC$", "Func")
     return inputTree
 
 #~ def replaceBinaryPredicates(inputTree, predicate, toMatch, toIgnore):
@@ -144,8 +155,8 @@ if __name__ == "__main__":
     #Rule for functions
     #~ inputTree = replacePredicate(inputTree, 'Func', 'CC', '')
     #Rule for Unary
-    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', '(.*)VP(.*)')
-    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', '(.*)VP(.*)')
+    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', '(.*)(VP|Func)(.*)')
+    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', '(.*)(VP|Func)(.*)')
 
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '(.*)\((Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '^((?!V[A-Z].?).)*$')
@@ -158,3 +169,5 @@ if __name__ == "__main__":
     #~ print inputTree
     open("parsedTree.txt","w").write(str(inputTree))
     #outputUnaries(inputTree)
+
+
