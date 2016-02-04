@@ -15,6 +15,7 @@ client = MongoClient('localhost', 27017)
 f = open("./output/semanticSent.json", "w")
 
 db = client['law_db']
+
 parsedSent = """(ROOT
   (SBARQ
     (WHNP (WP Whoever))
@@ -62,6 +63,7 @@ parsedSent = """(ROOT
 
 
 i= 0
+
 def insert_sent(tupleList, lawID, sentID):
     insertList = []
     for _entity in tupleList:
@@ -76,7 +78,7 @@ def insert_sent(tupleList, lawID, sentID):
             return
         elif sys.argv[1] == "insert":
             #~ print "Type:", type(newEntity.out())
-            db.semantic_sent_temp5.insert_one(newEntity.out())
+            db.semantic_sent.insert_one(newEntity.out())
         elif sys.argv[1] == "file":
             #~ global i
             global f
