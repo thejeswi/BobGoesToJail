@@ -1,0 +1,54 @@
+(ROOT
+  (S
+    (Unary
+      (NP
+        (NP (NNS Sections))
+        (NP
+          (CD 30)
+          (NN subsection)
+          (PRN (-LRB- -LRB-) (NP (CD 1)) (-RRB- -RRB-))))
+      (, ,)
+      (NP
+        (NP
+          (CD 31)
+          (NN subsection)
+          (PRN (-LRB- -LRB-) (NP (CD 1)) (-RRB- -RRB-)))
+        (, ,)
+        (NP (NN no.) (CD 1)))
+      (, ,))
+    (VP
+      (MD shall)
+      (VP
+        (VB apply)
+        (ADVP (RB accordingly))
+        (PP
+          (PP
+            (TO to)
+            (Unary
+              (NP (VBN attempted) (NN incitement))
+              (PP
+                (IN of)
+                (NP
+                  (NP (JJ false) (JJ unsworn) (NN testimony))
+                  (PRN
+                    (-LRB- -LRB-)
+                    (NP (NN Section) (CD 153))
+                    (-RRB- -RRB-))))))
+          (CC and)
+          (PP
+            (IN of)
+            (Unary
+              (NP (DT a) (JJ false) (NN affirmation))
+              (PP
+                (IN in)
+                (NP
+                  (NP (NN lieu))
+                  (PP
+                    (IN of)
+                    (NP
+                      (NP (DT an) (NN oath))
+                      (PRN
+                        (-LRB- -LRB-)
+                        (NP (NN Section) (CD 156))
+                        (-RRB- -RRB-)))))))))))
+    (. .)))

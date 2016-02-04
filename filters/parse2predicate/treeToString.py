@@ -1,26 +1,73 @@
 import nltk
 from pprint import pprint
+import re
 
 def getWordList(tree, wordList = []):
-    #print("tree:", tree)
     for subtree in tree:
-        if type(subtree) == nltk.tree.Tree:
+        if type(subtree) == nltk.tree.Tree or type(subtree) == nltk.tree.ParentedTree:
             getWordList(subtree, wordList)
         else:
-            return wordList.append(subtree)
+            wordList = wordList.append(subtree)
+            #~ print "Else part:", subtree
+            break
+    if (wordList == None):
+            if len(tree) == 1:
+                return [str(tree[0])]
     return wordList
 
+def removeWP(tree):
+    tree = str(tree)
+    tree = " ".join(" ".join(tree.split("\n")).split())
+    return tree
+    
+def groupSplitter(subTreeStr, wordList, toSplitAt):
+    funcWord = toSplitAt.group(1).split(")")[0]
+    listSub = subTreeStr.split(")")
+    splitWords = []
+    for sub in listSub:
+        sub = sub.strip()
+        if sub[0:5] == "(Func":
+            splitWords.append(sub[6:])
+    locationList = []
+    #~ print wordList, "\n******************"
+    for spw in splitWords:
+        i=0
+        for word in wordList:
+            if word == spw and not (i  in locationList):
+                locationList.append(i)
+                #~ print "The word", wordList[i], i
+            i += 1
+    return locationList
+    
 def traverseTree(tree, finalList = []):
     for subtree in tree:
+        unaryFlag = False
         if type(subtree) == nltk.tree.Tree:
             label = subtree.label()
-            if label == "Unary":
-                #~ print "Unary: ", getWordList(subtree, [])
-                finalList.append(("Unary", getWordList(subtree, [])))
-                continue
             if label == "Func":
-                #~ print "Func: ", getWordList(subtree, [])
+                #~ print "FuncTree: ",subtree
                 finalList.append(("Func", getWordList(subtree, [])))
+                continue
+            if label == "Unary":
+                #~ subTreeStr = removeWP(subtree)
+                #~ toSplitAt = re.search("^.*\(Func (.*)\).*$", subTreeStr)
+                #~ if toSplitAt:
+                    #~ subTree = nltk.ParentedTree.fromstring(subTreeStr)
+                    #~ wordList = getWordList(subTree)
+                    #~ splitList = groupSplitter(subTreeStr, wordList, toSplitAt)
+                    #~ #Something to store seperate stuff
+                    #~ lastLoc = 0
+                    #~ for split in splitList:
+                        #print(("Unary", wordList[lastLoc:split-1]))
+                        #~ finalList.append(("Unary1", wordList[lastLoc:split-1]))
+                        #print(("FuncU", [wordList[split]]))
+                        #~ finalList.append(("FuncU", [wordList[split]]))
+                        #~ lastLoc = split+1
+                    #print("Unary",wordList[lastLoc:])
+                    #~ finalList.append(("Unary2",wordList[lastLoc:]))
+                    #~ continue
+                wordList = getWordList(subtree, [])
+                finalList.append(("UnaryS", wordList))
                 continue
             traverseTree(subtree, finalList)
         else:
@@ -28,42 +75,13 @@ def traverseTree(tree, finalList = []):
             finalList.append(("Binary", [subtree]))
     return finalList
     
-#~ def sameStuffCombinerOld(listOfStuff):
-    #~ correctStuff = []
-    #~ lastFirstElemId = None
-    #~ previousTag = None
-    #~ for i in range(len(listOfStuff) - 1):
-        #~ if previousTag != listOfStuff[i][0] and listOfStuff[i][0] == listOfStuff[i+1][0] and lastFirstElemId:
-            #~ firstElem = listOfStuff[lastFirstElemId]
-            #~ firstElem[1].append(listOfStuff[i+1])
-            #~ print 'Adding', listOfStuff[i+1], 'to', firstElem
-        #~ else:
-            #~ correctStuff.append(listOfStuff[i])
-            #~ lastFirstElemId = i
-            #~ previousTag = listOfStuff[i][0]
-            #~ print 'First', lastFirstElemId, listOfStuff[i]
-    #~ return correctStuff
-        
-#~ def sameStuffCombiner(listOfStuff):
-    #~ correctStuff = []
-    #~ lastFirstElemId = None
-    #~ previousTag = None
-    #~ for i in range(len(listOfStuff)):
-        #~ if previousTag == listOfStuff[i][0]:
-            #~ firstElem = listOfStuff[lastFirstElemId]
-            #~ firstElem[1].extend(listOfStuff[i][1])
-            #~ ##~ print 'Adding', listOfStuff[i][1], 'to', firstElem
-        #~ else:
-            #~ correctStuff.append(listOfStuff[i])
-            #~ lastFirstElemId = i
-            #~ previousTag = listOfStuff[i][0]
-            #~ ##~ print 'First', lastFirstElemId, listOfStuff[i]
-    #~ return correctStuff
-
-def sameStuffCombiner2(listOfStuff):
+def sameStuffCombiner(listOfStuff):
     previousTag = None
     finalStuff = []
     for stuff in listOfStuff:
+        if stuff[1] == None:
+            #~ print stuff[0],"Error found"
+            continue
         if stuff[0] == previousTag:
             finalStuff[-1][1].extend(stuff[1])
         else:
@@ -71,10 +89,12 @@ def sameStuffCombiner2(listOfStuff):
             previousTag = stuff[0]
     return finalStuff
 
-if __name__ == "__main__":
-    s = open("parsedTree.txt", "rU").read()
+def treeToString(s):
     tree = nltk.tree.Tree.fromstring(s)
     listOfStuff = traverseTree(tree, [])
-    
-    combined = sameStuffCombiner2(listOfStuff)
-    
+    combined = sameStuffCombiner(listOfStuff)
+    return combined
+
+if __name__ == "__main__":
+    s = open("parsedTree.txt", "rU").read()
+    print treeToString(s)

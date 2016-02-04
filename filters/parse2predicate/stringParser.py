@@ -1,50 +1,7 @@
 import re
 from nltk import ParentedTree
 
-parsedSent = """(ROOT
-  (SBARQ
-    (WHNP (WP Whoever))
-    (SQ
-      (VP
-        (PP (CC upon)
-          (NP
-            (NP (NN commission))
-            (PP (IN of)
-              (NP (DT the) (NN act)))))
-        (VBZ is)
-        (ADJP (JJ incapable)
-          (PP (IN of)
-            (S
-              (VP
-                (VP (VBG appreciating)
-                  (NP
-                    (NP (DT the) (NNS wrongfulness))
-                    (PP (IN of)
-                      (NP (DT the) (NN act)))))
-                (CC or)
-                (VP (VBG acting)
-                  (PP (IN in)
-                    (NP
-                      (NP (NN accordance))
-                      (PP (IN with)
-                        (NP (JJ such) (NN appreciation)))))
-                  (NP
-                    (ADJP (JJ due)
-                      (PP (TO to)
-                        (NP
-                          (NP (DT a) (JJ pathological) (JJ emotional) (NN disorder))
-                          (, ,)
-                          (NP
-                            (NP (JJ profound) (NN consciousness) (NN disorder))
-                            (, ,)
-                            (NP (JJ mental) (NN defect))
-                            (CC or)
-                            (NP (DT any) (JJ other) (JJ serious) (JJ emotional) (NN abnormality)))
-                          (, ,))))
-                    (VBG acts))
-                  (PP (IN without)
-                    (NP (NN guilt))))))))))))
-"""
+parsedSent = """(ROOT (S (NP (NP (NP (NNS Sections)) (NP (CD 30) (NN subsection) (PRN (-LRB- -LRB-) (NP (CD 1)) (-RRB- -RRB-)))) (, ,) (NP (NP (CD 31) (NN subsection) (PRN (-LRB- -LRB-) (NP (CD 1)) (-RRB- -RRB-))) (, ,) (NP (NN no.) (CD 1))) (, ,)) (VP (MD shall) (VP (VB apply) (ADVP (RB accordingly)) (PP (PP (TO to) (NP (NP (VBN attempted) (NN incitement)) (PP (IN of) (NP (NP (JJ false) (JJ unsworn) (NN testimony)) (PRN (-LRB- -LRB-) (NP (NN Section) (CD 153)) (-RRB- -RRB-)))))) (CC and) (PP (IN of) (NP (NP (DT a) (JJ false) (NN affirmation)) (PP (IN in) (NP (NP (NN lieu)) (PP (IN of) (NP (NP (DT an) (NN oath)) (PRN (-LRB- -LRB-) (NP (NN Section) (CD 156)) (-RRB- -RRB-))))))))))) (. .)))"""
 
 def toNLTKtree(str):
     newTree = ParentedTree.fromstring(str)
@@ -69,7 +26,7 @@ def ifThereIsNo(tree, toNotMatch):
 def ifThereIsNoMatch(tree, toNotMatch):
     if toNotMatch == '':
         return True
-    print removeWP(tree)
+    #print removeWP(tree)
     if re.match(toNotMatch, removeWP(tree)):
         return False
     return True
@@ -79,9 +36,9 @@ def tagChanger(TreeString, SubTreeString, toChange, newValue):
     SubTreeString = removeWP(str(SubTreeString))
     toChange = re.sub("\^|\$",'', toChange) #Warning!!! Manual sub
     fixedSubTreeString = re.sub(toChange, newValue, SubTreeString, 1)
-    print fixedSubTreeString, toChange, newValue
+    #print fixedSubTreeString, toChange, newValue
     newTree = re.sub(re.escape(SubTreeString), fixedSubTreeString, TreeString, 1)
-    print "\n",newTree,"\n"
+    #print "\n",newTree,"\n"
     return toNLTKtree(newTree)
 
 def tagReplace(TreeString, SubTreeString, toChange, newValue):
@@ -149,7 +106,7 @@ def replaceKeywordPredicates(inputTree):
 #def outputUnaries(inputTree):
 #    print findPredicate(inputTree, 'Unary', 'Unary', '')
     
-if __name__ == "__main__":
+def stringParser(parsedSent):
     inputTree = toNLTKtree(parsedSent)
     inputTree = replaceKeywordPredicates(inputTree)
     #Rule for functions
@@ -157,7 +114,6 @@ if __name__ == "__main__":
     #Rule for Unary
     inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', '(.*)(VP|Func|VBG)(.*)')
     inputTree = replacePredicate(inputTree, 'Unary', '^NP$', '(.*)(VP|Func|VBG)(.*)')
-
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '(.*)\((Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '^((?!V[A-Z].?).)*$')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VB[A-Z]?', '(.*)(Unary|Func|Binary)(.*)')
@@ -165,9 +121,10 @@ if __name__ == "__main__":
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'TO', '(.*)(Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'MD', '(.*)(Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'IN', '(.*)(Unary|Func|Binary)(.*)')
+    return inputTree
     
-    #~ print inputTree
-    open("parsedTree.txt","w").write(str(inputTree))
-    #outputUnaries(inputTree)
 
-
+if __name__ == "__main__":
+    parsed = stringParser(parsedSent)
+    #~ print "Writing out put to parsedTree.txt"
+    open("parsedTree.txt","w").write(str(parsed))
