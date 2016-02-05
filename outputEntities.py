@@ -33,7 +33,7 @@ client = MongoClient('localhost', 27017)
 
 if new:
 	db = client['law_db']
-	db_ent = db.semantic_sent_temp5
+	db_ent = db.semantic_sent
 else:
 	db = client['tree2relations']
 	db_ent = db.entities

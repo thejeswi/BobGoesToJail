@@ -73,23 +73,22 @@ def insert_sent(tupleList, lawID, sentID):
         newEntity.lawID = lawID
         newEntity.sentenceID = sentID
         #~ insertList.append(newEntity.out())
-        if len(sys.argv)== 1:
-            pprint(newEntity.out)
-            return
-        elif sys.argv[1] == "insert":
+        #~ if len(sys.argv)== 1:
+        #~ print(newEntity.out())
+        #~ elif sys.argv[1] == "insert":
             #~ print "Type:", type(newEntity.out())
-            db.semantic_sent.insert_one(newEntity.out())
-        elif sys.argv[1] == "file":
+            #~ db.semantic_sent.insert_one(newEntity.out())
+        #~ elif sys.argv[1] == "file":
             #~ global i
-            global f
+            #~ global f
             #~ i += 1
-            f.write(str(newEntity.out())+"\n")
+            #~ f.write(str(newEntity.out())+"\n")
             #~ f.close()
 
 def getParseTrees():
     parseTreeList = []
-    laws = db.parsed_laws.find()
-    #~ laws = db.parsed_laws.find({"lawID" : ObjectId("56a20255a18bdf3fadda7ffb")})
+    #~ laws = db.parsed_laws.find()
+    laws = db.parsed_laws.find({"lawID" : ObjectId("56a20255a18bdf3fadda7ffb")})
     for law in laws:
         lawID = law['lawID']
         sentenceID = law['sentenceID']
@@ -113,7 +112,8 @@ def run():
         #~ if "Collateral" in str(tupleList):
             #~ print "Error at:", str(tupleList)
             #~ continue
-        insert_sent(tupleList, lawID, sentID)
+        pprint(tupleList)
+        #~ insert_sent(tupleList, lawID, sentID)
 
 if __name__=="__main__":
     run()

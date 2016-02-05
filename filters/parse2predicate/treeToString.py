@@ -11,8 +11,7 @@ def getWordList(tree, wordList = []):
             #~ print "Else part:", subtree
             break
     if (wordList == None):
-            if len(tree) == 1:
-                return [str(tree[0])]
+        return [str(tree[0])]
     return wordList
 
 def removeWP(tree):
@@ -58,20 +57,22 @@ def traverseTree(tree, finalList = []):
                     #~ #Something to store seperate stuff
                     #~ lastLoc = 0
                     #~ for split in splitList:
-                        #print(("Unary", wordList[lastLoc:split-1]))
-                        #~ finalList.append(("Unary1", wordList[lastLoc:split-1]))
-                        #print(("FuncU", [wordList[split]]))
+                        #~ #print(("Unary", wordList[lastLoc:split-1]))
+                        #~ finalList.append(("UnaryS", wordList[lastLoc:split-1]))
+                        #~ #print(("FuncU", [wordList[split]]))
                         #~ finalList.append(("FuncU", [wordList[split]]))
                         #~ lastLoc = split+1
-                    #print("Unary",wordList[lastLoc:])
-                    #~ finalList.append(("Unary2",wordList[lastLoc:]))
+                    #~ #print("Unary",wordList[lastLoc:])
+                    #~ finalList.append(("UnaryE",wordList[lastLoc:]))
                     #~ continue
                 wordList = getWordList(subtree, [])
-                finalList.append(("UnaryS", wordList))
+                finalList.append(("Unary", wordList))
                 continue
             traverseTree(subtree, finalList)
         else:
-            #~ print "Binary: ", subtree
+            #Skip the BInary for . and ,
+            if subtree.strip() == "." or subtree.strip() == ",":
+                continue
             finalList.append(("Binary", [subtree]))
     return finalList
     

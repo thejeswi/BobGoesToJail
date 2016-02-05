@@ -92,6 +92,7 @@ def replaceKeywordPredicates(inputTree):
     inputTree = tagReplace(inputTree, "(IN then)", "^IN$", "Func")
     inputTree = tagReplace(inputTree, "(IN or)", "^IN$", "Func")
     inputTree = tagReplace(inputTree, "(IN and)", "^IN$", "Func")
+    inputTree = tagReplace(inputTree, "(CC and)", "^IN$", "Func")
     inputTree = tagReplace(inputTree, "(RB then)", "^RB$", "Func")
     inputTree = tagReplace(inputTree, "(RB not)", "^RB$", "Func")
     inputTree = tagReplace(inputTree, "(CC or)", "^CC$", "Func")
