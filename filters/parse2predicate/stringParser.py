@@ -27,7 +27,8 @@ def ifThereIsNoMatch(tree, toNotMatch):
     if toNotMatch == '':
         return True
     #print removeWP(tree)
-    if re.match(toNotMatch, removeWP(tree)):
+    if re.search(toNotMatch, removeWP(tree)):
+        #~ print "If there is no: ", toNotMatch, removeWP(tree)
         return False
     return True
 
@@ -60,25 +61,12 @@ def findPredicate(parent, predicate, toMatch, toIgnore, found=None):
                 continue
             if re.match(toMatch, node.label()) != None:
                 #~ print toMatch, "matches '", node.label(),"'"
-                if ifThereIsNo(node, toIgnore):
+                if ifThereIsNoMatch(node, toIgnore):
                     found = node
                     #print node.label()
                     return found
             found = findPredicate(node, predicate, toMatch, toIgnore, found)
     return found
-
-#~ def findBinary(parent, predicate, toIgnore, found=None):
-    #~ if found:
-        #~ return found
-    #~ for node in parent:
-        #~ if type(node) is ParentedTree:
-            #~ if node.label() == predicate:
-                #~ continue
-        #~ if ifThereIsNo(node, toIgnore):
-            #~ found = node
-            #~ return found
-            #~ found = findPredicate(node, predicate, toMatch, toIgnore, found)
-    #~ return found
 
 def replacePredicate(inputTree, predicate, toMatch, toIgnore):
     while findPredicate(inputTree, predicate, toMatch, toIgnore):
@@ -92,29 +80,31 @@ def replaceKeywordPredicates(inputTree):
     inputTree = tagReplace(inputTree, "(IN then)", "^IN$", "Func")
     inputTree = tagReplace(inputTree, "(IN or)", "^IN$", "Func")
     inputTree = tagReplace(inputTree, "(IN and)", "^IN$", "Func")
-    inputTree = tagReplace(inputTree, "(CC and)", "^IN$", "Func")
+    inputTree = tagReplace(inputTree, "(CC and)", "^CC$", "Func")
     inputTree = tagReplace(inputTree, "(RB then)", "^RB$", "Func")
     inputTree = tagReplace(inputTree, "(RB not)", "^RB$", "Func")
     inputTree = tagReplace(inputTree, "(CC or)", "^CC$", "Func")
+    inputTree = tagReplace(inputTree, "(, ,)", "(, ,)", "(Func ,)")
+    inputTree = tagReplace(inputTree, "(. .)", "(. .)", "(Func .)")
+    inputTree = tagReplace(inputTree, "(DT The)", "(DT The)", "")
+    inputTree = tagReplace(inputTree, "(DT the)", "(DT the)", "")
+    inputTree = tagReplace(inputTree, "(MD shall)", "^MD$", "Func")
     return inputTree
-
-#~ def replaceBinaryPredicates(inputTree, predicate, toMatch, toIgnore):
-    #~ while findPredicate(inputTree, predicate, toMatch, toIgnore):
-        #~ unaryStr = removeWP(str(findPredicate(inputTree, predicate, toMatch, toIgnore)))
-        #~ inputTree = tagChanger(inputTree, unaryStr, toMatch, predicate)
+#~ def specialRules(inputTree):
+    #~ inputTree = tagReplace(inputTree, "IN", "^IN$", "IN")
     #~ return inputTree
-
-#def outputUnaries(inputTree):
-#    print findPredicate(inputTree, 'Unary', 'Unary', '')
-    
 def stringParser(parsedSent):
     inputTree = toNLTKtree(parsedSent)
-    inputTree = replaceKeywordPredicates(inputTree)
     #Rule for functions
     #~ inputTree = replacePredicate(inputTree, 'Func', 'CC', '')
     #Rule for Unary
-    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', '(.*)(VP|Func|VBG)(.*)')
-    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', '(.*)(VP|Func|VBG)(.*)')
+    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', 'VP|Func|VBG|Comma|Point')
+    #~ inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', '(.*)(VP|Func|VBG)(.*)')
+    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', 'VP|Func|VBG|Comma|Point')
+    inputTree = replacePredicate(inputTree, 'Unary', 'PRP', 'VP|Func|VBG|Comma|Point')
+    inputTree = replacePredicate(inputTree, 'Unary', 'NN', 'VP|Func|VBG|Comma|Point')
+    inputTree = replacePredicate(inputTree, 'Unary', 'NNS', 'VP|Func|VBG|Comma|Point')
+    #~ inputTree = replacePredicate(inputTree, 'Unary', '^NP$', '(.*)(VP|Func|VBG)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '(.*)\((Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '^((?!V[A-Z].?).)*$')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VB[A-Z]?', '(.*)(Unary|Func|Binary)(.*)')
@@ -122,6 +112,7 @@ def stringParser(parsedSent):
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'TO', '(.*)(Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'MD', '(.*)(Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'IN', '(.*)(Unary|Func|Binary)(.*)')
+    inputTree = replaceKeywordPredicates(inputTree)
     return inputTree
     
 

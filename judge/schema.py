@@ -65,6 +65,7 @@ class entity(object):
                 "time":self.time,
                 }
 
+
 class entityLink(object):
     def __init__(self):
         self.EntityFromID = "Undefined",
@@ -117,3 +118,20 @@ class subLink_law_pos(object):
                 "time":self.time
                 }
 
+
+
+#############################################
+
+class synonyms(object):
+    def __init__(self):
+        self.synonyms = []
+        self.sentenceID = None
+        self.entityID = None
+        self.time = datetime.datetime.utcnow()
+    def out(self):
+        return {
+                "synonyms":self.synonyms,
+                "sentenceID":self.sentenceID,
+                "entityID":self.entityID,
+                "time":self.time
+                }

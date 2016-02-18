@@ -1,7 +1,9 @@
 import nltk
 from pprint import pprint
 import re
-
+from traverse import traverse
+from stringParser import stringParser
+from rules import rules
 def getWordList(tree, wordList = []):
     for subtree in tree:
         if type(subtree) == nltk.tree.Tree or type(subtree) == nltk.tree.ParentedTree:
@@ -14,11 +16,22 @@ def getWordList(tree, wordList = []):
         return [str(tree[0])]
     return wordList
 
+def getWordListSimple(tree, wordList = []):
+    for subtree in tree:
+        if type(subtree) == nltk.tree.Tree or type(subtree) == nltk.tree.ParentedTree:
+            getWordList(subtree, wordList)
+        else:
+            wordList = wordList.append(subtree)
+            #~ print "Else part:", subtree
+            break
+    if (wordList == None):
+        return [str(tree[0])]
+    return wordList
 def removeWP(tree):
     tree = str(tree)
     tree = " ".join(" ".join(tree.split("\n")).split())
     return tree
-    
+
 def groupSplitter(subTreeStr, wordList, toSplitAt):
     funcWord = toSplitAt.group(1).split(")")[0]
     listSub = subTreeStr.split(")")
@@ -37,45 +50,34 @@ def groupSplitter(subTreeStr, wordList, toSplitAt):
                 #~ print "The word", wordList[i], i
             i += 1
     return locationList
-    
+
 def traverseTree(tree, finalList = []):
     for subtree in tree:
         unaryFlag = False
         if type(subtree) == nltk.tree.Tree:
             label = subtree.label()
+            wordList = getWordList(subtree, [])
             if label == "Func":
-                #~ print "FuncTree: ",subtree
-                finalList.append(("Func", getWordList(subtree, [])))
+                finalList.append(("Func", wordList))
                 continue
             if label == "Unary":
-                #~ subTreeStr = removeWP(subtree)
-                #~ toSplitAt = re.search("^.*\(Func (.*)\).*$", subTreeStr)
-                #~ if toSplitAt:
-                    #~ subTree = nltk.ParentedTree.fromstring(subTreeStr)
-                    #~ wordList = getWordList(subTree)
-                    #~ splitList = groupSplitter(subTreeStr, wordList, toSplitAt)
-                    #~ #Something to store seperate stuff
-                    #~ lastLoc = 0
-                    #~ for split in splitList:
-                        #~ #print(("Unary", wordList[lastLoc:split-1]))
-                        #~ finalList.append(("UnaryS", wordList[lastLoc:split-1]))
-                        #~ #print(("FuncU", [wordList[split]]))
-                        #~ finalList.append(("FuncU", [wordList[split]]))
-                        #~ lastLoc = split+1
-                    #~ #print("Unary",wordList[lastLoc:])
-                    #~ finalList.append(("UnaryE",wordList[lastLoc:]))
-                    #~ continue
-                wordList = getWordList(subtree, [])
                 finalList.append(("Unary", wordList))
                 continue
+            if label == "IN":
+                finalList.append(("IN", wordList))
+                continue
             traverseTree(subtree, finalList)
+            if label == "Comma":
+                finalList.append(("Comma", ","))
+            if label == "Point":
+                finalList.append(("Point", "."))
         else:
             #Skip the BInary for . and ,
-            if subtree.strip() == "." or subtree.strip() == ",":
-                continue
+            #~ if subtree.strip() == "." or subtree.strip() == ",":
+                #~ continue
             finalList.append(("Binary", [subtree]))
     return finalList
-    
+
 def sameStuffCombiner(listOfStuff):
     previousTag = None
     finalStuff = []
@@ -84,6 +86,10 @@ def sameStuffCombiner(listOfStuff):
             #~ print stuff[0],"Error found"
             continue
         if stuff[0] == previousTag:
+            if stuff[0] == "Func":
+                finalStuff.append(stuff)
+                previousTag = stuff[0]
+                continue
             finalStuff[-1][1].extend(stuff[1])
         else:
             finalStuff.append(stuff)

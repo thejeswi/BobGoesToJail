@@ -1,0 +1,1 @@
+['John', 'Proceeding', 'Circumstance', 'Attribute', 'Time', 'NPA', 'Judgement', 'Person', 'Fault', 'Object', 'Location', 'Func', 'Act', 'Organization', 'Bob', 'Law', 'punishability']
