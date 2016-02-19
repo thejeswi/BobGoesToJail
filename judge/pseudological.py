@@ -1,3 +1,6 @@
+import nltk, nltk.data, nltk.tag
+#tagger = nltk.data.load(nltk.tag._POS_TAGGER)
+
 def replaceFuncToHtml(text):
 	text = text.replace('or', '&or;')
 	text = text.replace('and', '&and;')
@@ -164,10 +167,13 @@ def setBracketsOrAnd(sent):
 				# Rule 2: Set brackets [Binary or Binary]
 				biBiRule = leftEnt[1] == "Binary" and rightEnt[1] == "Binary"
 				
+				# Rule 3: Set brackets [ADV or ADV]
+				advRule = leftEnt[1] == "ADV" and rightEnt[1] == "ADV"
+				
 				# Rule 3: Set brackets [Unary and Binary Unary Binary Unary ...][
 				# TODO
 				
-				if unUnRule or biBiRule:
+				if unUnRule or biBiRule or advRule:
 					outputSent.insert(a-1, lBracket)
 					outputSent.append(_entity)
 					a += 1
@@ -229,6 +235,56 @@ def setOrAndWithinUnary(sent):
 	
 	return outputSent
 	
+def splitAdverbesInBinary(sent):
+	outputSent = []
+	lBracket = ('[a', 'Func')
+	rBracket = ('a]', 'Func')
+	funcOr = ('or', 'Func')
+	funcAnd = ('and', 'Func')
+	
+	for i, _entity in enumerate(sent): 
+		text = _entity[0]
+		entityType = _entity[1]
+		
+		if entityType == 'Binary':
+			#run nltk pos-tagger on text
+			print "postagging"
+			tags = nltk.pos_tag(nltk.word_tokenize(text))
+			print tags
+			print "postagging done"
+			# Rule: Split adverbs within Binary: Binary => [Binary and Adjective and Binary]
+			newEntities = []
+			restBinary = ""
+			
+			isAdjInBinary = len([word for word, tag in tags if tag == 'JJ']) > 0
+			
+			if isAdjInBinary:
+				newEntities.append(lBracket)
+			
+				for wordtxt, tag in tags:
+					if tag == 'RB':
+						if restBinary != "":
+							newEntities.append((restBinary, 'Binary'))
+							newEntities.append(funcAnd)
+							restBinary = ""
+							
+						newEntities.append((wordtxt, 'Binary'))
+						newEntities.append(funcAnd)
+					else:
+						restBinary += wordtxt + ' '
+									
+				if restBinary != "":
+					newEntities.append((restBinary[:-1], 'Binary'))
+					
+				newEntities.append(rBracket)
+				outputSent.extend(newEntities)
+			else:
+				outputSent.append(_entity)		
+		else:
+			outputSent.append(_entity)
+		
+	return outputSent
+	
 def bracketSetter(sents):		
 	return [setOrAndWithinUnary(setBracketsOrAnd(setBracketsImpl(sent))) for sent in sents]
 	
@@ -262,6 +318,6 @@ def filterSymbols(sents):
 			
 		sentsOut.append(entities)
 	return sentsOut
-	
+		
 def filterSents(db_ent, sent_obj_id):
 	return filterSymbols(bracketSetter(ifToLogical(getSentencesArraySplitByDot(db_ent, sent_obj_id))))

@@ -4,6 +4,9 @@ import re
 from traverse import traverse
 from stringParser import stringParser
 from rules import rules
+
+ignoreWords = ["cause","causes", "the", "a", "to"]
+
 def getWordList(tree, wordList = []):
     for subtree in tree:
         if type(subtree) == nltk.tree.Tree or type(subtree) == nltk.tree.ParentedTree:
@@ -57,14 +60,17 @@ def traverseTree(tree, finalList = []):
         if type(subtree) == nltk.tree.Tree:
             label = subtree.label()
             wordList = getWordList(subtree, [])
+            if label == "ADV":
+                finalList.append(("ADV", wordList))
+                continue
             if label == "Func":
                 finalList.append(("Func", wordList))
                 continue
             if label == "Unary":
                 finalList.append(("Unary", wordList))
                 continue
-            if label == "IN":
-                finalList.append(("IN", wordList))
+            if label == "PREP":
+                finalList.append(("PREP", wordList))
                 continue
             traverseTree(subtree, finalList)
             if label == "Comma":
@@ -100,7 +106,14 @@ def treeToString(s):
     tree = nltk.tree.Tree.fromstring(s)
     listOfStuff = traverseTree(tree, [])
     combined = sameStuffCombiner(listOfStuff)
-    return combined
+    newCombined = []
+    for c in combined:
+        if c == ('Binary', ['causes']):
+            c = ('Ignore', ['causes'])
+        if c == ('Binary', ['to']):
+            c = ('To', ['to'])
+        newCombined.append(c)
+    return newCombined
 
 if __name__ == "__main__":
     s = open("parsedTree.txt", "rU").read()

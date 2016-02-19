@@ -90,20 +90,23 @@ def replaceKeywordPredicates(inputTree):
     inputTree = tagReplace(inputTree, "(DT the)", "(DT the)", "")
     inputTree = tagReplace(inputTree, "(MD shall)", "^MD$", "Func")
     return inputTree
-#~ def specialRules(inputTree):
-    #~ inputTree = tagReplace(inputTree, "IN", "^IN$", "IN")
-    #~ return inputTree
+def specialRules(inputTree):
+    inputTree = tagReplace(inputTree, "IN", "^IN$", "IN")
+    return inputTree
 def stringParser(parsedSent):
     inputTree = toNLTKtree(parsedSent)
     #Rule for functions
     #~ inputTree = replacePredicate(inputTree, 'Func', 'CC', '')
     #Rule for Unary
-    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', 'VP|Func|VBG|Comma|Point')
+    toIgnore = 'VP|Func|VBG|Comma|Point'
+    inputTree = replacePredicate(inputTree, 'PREP','IN', toIgnore)
+    toIgnore = toIgnore + '|IN'
+    inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', toIgnore)
     #~ inputTree = replacePredicate(inputTree, 'Unary', 'WHNP', '(.*)(VP|Func|VBG)(.*)')
-    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', 'VP|Func|VBG|Comma|Point')
-    inputTree = replacePredicate(inputTree, 'Unary', 'PRP', 'VP|Func|VBG|Comma|Point')
-    inputTree = replacePredicate(inputTree, 'Unary', 'NN', 'VP|Func|VBG|Comma|Point')
-    inputTree = replacePredicate(inputTree, 'Unary', 'NNS', 'VP|Func|VBG|Comma|Point')
+    inputTree = replacePredicate(inputTree, 'Unary', '^NP$', toIgnore)
+    inputTree = replacePredicate(inputTree, 'Unary', 'PRP', toIgnore)
+    inputTree = replacePredicate(inputTree, 'Unary', 'NN', toIgnore)
+    inputTree = replacePredicate(inputTree, 'Unary', 'NNS', toIgnore)
     #~ inputTree = replacePredicate(inputTree, 'Unary', '^NP$', '(.*)(VP|Func|VBG)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '(.*)\((Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'VP', '^((?!V[A-Z].?).)*$')
@@ -113,6 +116,7 @@ def stringParser(parsedSent):
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'MD', '(.*)(Unary|Func|Binary)(.*)')
     #~ inputTree = replacePredicate(inputTree, 'Binary', 'IN', '(.*)(Unary|Func|Binary)(.*)')
     inputTree = replaceKeywordPredicates(inputTree)
+    inputTree = replacePredicate(inputTree, 'ADV', 'RB', toIgnore)
     return inputTree
     
 

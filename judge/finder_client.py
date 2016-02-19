@@ -19,10 +19,17 @@ def get_relavent_laws(case):
     return list(set(lawsList))
 
 def get_similarity(word1, word2):
-    res = requests.get(url+"ent/"+str(word1)+"/"+str(word2)).text
+    word1 = word1.replace(" ","_")
+    word2 = word2.replace(" ","_")
+    finalURL = url+"ent/"+str(word1)+"/"+str(word2)
+    if word1.strip() == "" or word2.strip() == "":
+        return "0.0"
+    #~ print "Requesting server:", finalURL
+    res = requests.get(finalURL).text
     return res
     
 if __name__ == "__main__":
-    print get_relavent_laws("Bob disturbs a funeral service")
+    #~ print get_relavent_laws("Bob disturbs a funeral service")
+    print get_similarity("instrument","guitar")
     #~ print get_matched_entities("disturbs a funeral service", "56a20258a18bdf3fadda8bfb")['match']
     
