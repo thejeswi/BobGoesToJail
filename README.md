@@ -10,11 +10,10 @@ To run the judging program, use python runJudger.py
 # Installation Requirements:
 0. Clone BobGoesToJail using `git clone git@code.fg-tech.de:thejeswi/BobGoesToJail.git`
 1. Mongo server running on 'localhost', port: 27017
-    * On Debian based OS use:
-        * `apt-get install mongodb`
+    * On Debian based OS use `apt-get install mongodb`. For other operating systems, please refer https://www.mongodb.org/downloads
 2. coreNLP server running on 'localhost', port: 3456
     * Use these commands:
-        * `sudo pip install pexpect unidecode`
+        * `pip install pexpect unidecode`
         * `git clone git://github.com/dasmith/stanford-corenlp-python.git`
         * `cd stanford-corenlp-python`
         * `wget http://nlp.stanford.edu/software/stanford-corenlp-full-2014-08-27.zip`
@@ -22,7 +21,7 @@ To run the judging program, use python runJudger.py
     * Run: `python corenlp.py`
 3. Word2Vec server running 'localhost', port: 9090
     * Go to `BobGoesToJail/word2vec`
-    * Download `GoogleNews-vectors-negative300.bin.gz` from `https://docs.google.com/uc?id=0B7XkCwpI5KDYNlNUTTlSS21pQmM&export=download` in this folder
+    * Download `GoogleNews-vectors-negative300.bin.gz` from https://docs.google.com/uc?id=0B7XkCwpI5KDYNlNUTTlSS21pQmM&export=download in this folder
     * Run: `python run.py`
 4. Python libraries required are listed on requirements.txt
     * Use `pip install -r requirements.txt` to install them.
