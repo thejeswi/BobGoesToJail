@@ -1,1 +1,3 @@
-.bin.gz
+*.bin.gz
+*.pyc
+
