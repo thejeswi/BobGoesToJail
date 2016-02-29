@@ -19,7 +19,6 @@ We hope you don't go to jail.
         * `unzip stanford-corenlp-full-2014-08-27.zip`
     * Run: `python corenlp.py`
 3. Word2Vec server running 'localhost', port: 9090
-
     * Go to `BobGoesToJail/word2vec`
     * Download `GoogleNews-vectors-negative300.bin.gz` from https://docs.google.com/uc?id=0B7XkCwpI5KDYNlNUTTlSS21pQmM&export=download in this folder
     * Run: `python run.py`
