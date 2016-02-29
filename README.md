@@ -4,14 +4,6 @@
 Welcome! Thank you for using BobGoesToJail?
 We hope you don't go to jail.
 
-# Run instructions:
-* To run the judging program, use python `run.py`
-* For obtaining the Psuedo Logical form of the law for your own corpus, follow these steps:
-    1. Get the law corpus in a `txt` file.
-    2. Run `python lawSplitter.py` from `BobGoesToJail/`
-    3. Run `python run.py` from `BobGoesToJail/filters/text2parse`
-    4. Run `python run.py insert` from `BobGoesToJail/filters/parse2predicate`
-    5. Run `python run.py` from `BobGoesToJail/filters/simpleLawFinder`
 
 
 # Installation Requirements:
@@ -34,8 +26,17 @@ We hope you don't go to jail.
 4. Python libraries required are listed on requirements.txt
     * Use `pip install -r requirements.txt` to install them.
 
-Other requirements:
-python-dev, curl
+5. Other package requirements: python-dev, curl
+
+# Run instructions:
+* To run the judging program, use python `run.py`
+* For obtaining the Psuedo Logical form of the law for your own corpus, follow these steps:
+    1. Get the law corpus in a `txt` file.
+    2. Run `python lawSplitter.py` from `BobGoesToJail/`
+    3. Run `python run.py` from `BobGoesToJail/filters/text2parse`
+    4. Run `python run.py insert` from `BobGoesToJail/filters/parse2predicate`
+    5. Run `python run.py` from `BobGoesToJail/filters/simpleLawFinder`
+
 # Major Modules:
 ## Filters
 ### Things which convert one data format to another.
