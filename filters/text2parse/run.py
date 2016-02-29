@@ -14,13 +14,12 @@ def text2parsedTree(text="No sentence inputed for parsing."):
         trees.append(sentence)
     return trees
 
-def parsedTree2DB(lawDB = "law_db", parseDB = "parsed_laws"):
+def parsedTree2DB(lawDB = "law_db"):
     client = MongoClient('localhost', 27017)
     lawsDB = client[lawDB]
     laws_db = lawsDB.laws    
     found_laws = laws_db.find()
-    parseDB = client[parseDB]
-    parse_db = parseDB.parseTrees
+    parse_db = lawsDB.parseTrees
     for law in found_laws:
             try:
                 if law["text"]:
