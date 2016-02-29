@@ -91,14 +91,18 @@ def insert_sent(tupleList, lawID, sentID):
 
 def getParseTrees():
     parseTreeList = []
-    laws = db.parsed_laws.find()
+    laws = db.parseTrees.find()
     #~ laws = [db.parsed_laws.find_one()]
     #~ laws = db.parsed_laws.find({"sentenceID":ObjectId("56a20255a18bdf3fadda8202")})
     #~ laws = db.parsed_laws.find({"lawID" : ObjectId("56a20255a18bdf3fadda7ffb")})
     for law in laws:
         lawID = law['lawID']
         sentenceID = law['sentenceID']
-        sentences = law['parsed']['sentences']
+        try:
+            sentences = law['parsed']['sentences']
+        except KeyError:
+            print "Error at", sentenceID
+            continue
         for sent in sentences:
             parsedSent = runRules(str(sent['parsetree']))
             parseTreeList.append([str(parsedSent), lawID, sentenceID])
@@ -112,6 +116,7 @@ def run():
     parseTrees = getParseTrees()
     for _pTree in parseTrees:
         sent = _pTree[0]
+        print sent
         lawID = _pTree[1]
         sentID = _pTree[2]
         tupleList = getTreeToString(sent)
