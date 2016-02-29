@@ -1,18 +1,15 @@
 {% extends "template.html" %}
 {% block body %}
-         <div class="row">
-                    <div class="col-lg-12">
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> Judger - Input
-                            </li>
-                        </ol>
+                 <div class="row">
+                    <div class="col-lg-12" style="text-align:center">
+                         <img src="/static/logo.jpg" alt="BobGoesToJail?">
                     </div>
-                </div>
+        </div>
+
         <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" style="padding:100px">
                         <p class="lead">Example Inputs</p>
-                        <ul>
+                        <ul class="well">
                             <li>Bob negligently induces physical harms to another human</li>
                             <li>Bob killed a human by carelessness</li>
                             <li>Bob disparages memory of a dead person</li>
@@ -23,7 +20,7 @@
                         <div class="form-group">
                         <textarea class="form-control" rows="1" name="inputCase"></textarea>
                         <br/>
-                        <button class="btn btn-lg btn-default" type="submit">Judge!</button>
+                        <button class="btn btn-lg btn-danger pull-right" type="submit">Judge!</button>
                         </form>
                         </div>
                     </div>

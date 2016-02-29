@@ -17,14 +17,8 @@ yellow2 = "\x1b[4m"
 
 new = True
 
-htmlHead = """<html>
-	<head>
-		<title>Output Entities</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
-	<body>"""
-htmlEnd = """</body>
-</html>"""
+htmlHead = """{% extends "template.html" %}{% block body %}"""
+htmlEnd = """{% endblock %}"""
 sentenceDiv = '<div class="sentence">'
 divEnd = '</div>'
 
@@ -42,21 +36,21 @@ else:
 
 db_laws = db.laws
 	
-outF = open('./outPseudological/out.html', "w")
+outF = open('./templates/pseudological.html', "w")
 outF.write(htmlHead)
 
 def printColor(text, color):
 	 print color, text, black,
 
 def printEntity(text, entityType):
-    color = black
+	color = black
 
-    for entColor in entColors:
-        if entColor[0] == entityType:
-            color = entColor[1]
-            break
+	for entColor in entColors:
+		if entColor[0] == entityType:
+			color = entColor[1]
+			break
 
-    printColor(text, color)
+	printColor(text, color)
 
 
 
@@ -65,19 +59,19 @@ def printLegend():
 		printColor(entColor[0], entColor[1])
 
 def printSent(obj_id):
-    for _entity in db_ent.find({'sentenceID':ObjectId(obj_id)}):
+	for _entity in db_ent.find({'sentenceID':ObjectId(obj_id)}):
 	#for _entity in db_ent.find():
-        if not _entity['text']:
-            continue
+		if not _entity['text']:
+			continue
 		
-        entityType = _entity['entityType']
-        text = ' '.join(_entity['text'])
-        printEntity(text, entityType)
-        #print entityType, ':', text, '\n'
+		entityType = _entity['entityType']
+		text = ' '.join(_entity['text'])
+		printEntity(text, entityType)
+		#print entityType, ':', text, '\n'
 
-        #if text == '.':
-        #	print _entity['lawID']
-        		
+		#if text == '.':
+		#   print _entity['lawID']
+				
 			
 def getSent(sent_id):
 	sent = db_laws.find_one({'_id': ObjectId(sent_id)})
@@ -93,7 +87,7 @@ def printAndSavePseudoLogical(sent_obj_id):
 	outputText = ""
 	htmlText = ""
 	uId = 0
-	
+	bId = 0
 
 	sentObj = getSent(sent_obj_id)
 	law = getLaw(sentObj["lawID"])
@@ -113,19 +107,20 @@ def printAndSavePseudoLogical(sent_obj_id):
 		#outF.write('<span class="entity" id="Func">[</span>')
 		
 		for _entity in sent:
-			text = _entity[0]
+			text = _entity[0].replace(' ', '_')
 			entityType = _entity[1]
 				
 			if entityType == "Unary":
-				outputText = outputText + green + 'U' + str(uId) + '(' + text + ')' + black + ' & '
-				outF.write('<span class="entity" id="' + entityType + '">' + 'U' + str(uId) + '(' + text + ')' + '</span>')
+				outputText = outputText + green + text + '(' + 'x' + str(uId) + ')' + black + ' & '
+				outF.write('<span class="entity" id="' + entityType + '">' + text + '(' + 'x' + str(uId) + ')' + '</span>')
 				uId = uId + 1
 			elif entityType == "Binary":
-				outputText = outputText + red + 'B' + '(' + 'U' + str(uId - 1) + ',' + 'U' +  str(uId) + ')(' + text + ')' + black + ' & '
-				outF.write('<span class="entity" id="' + entityType + '">' +  'B' + '(' + 'U' + str(uId - 1) + ',' + 'U' +  str(uId) + ')' + '(' + text + ')' + '</span>')
+				outputText = outputText + red + text + '(' + 'e' + str(bId) + ',' + 'x' + str(uId - 1) + ',' + 'x' +  str(uId) + ')' + black + ' & '
+				outF.write('<span class="entity" id="' + entityType + '">' + text + '(' + 'e' + str(bId) + ',' + 'x' + str(uId - 1) + ',' + 'x' +  str(uId) + ')' + '</span>')
+				bId = bId + 1
 			elif entityType == 'Func' or entityType == 'FuncU':
 				label = text
-				outputText = outputText + yellow + label + '(' + str(text) + ')' + black + ' '	
+				outputText = outputText + yellow + label + '(' + str(text) + ')' + black + ' '  
 				outF.write('<span class="entity" id="' + entityType + '">' + replaceFuncToHtml(text) + '</span>')
 			else:
 				outF.write('<span class="entity" id="' + entityType + '">' + text + '</span>')
@@ -143,7 +138,7 @@ def findFirstSentId(lawNum):
 	lawOID =  dbl.laws.find_one({'num' : lawNum})['_id']
 	print 'te', lawOID
 	lawSentID = dbl.laws.find_one({'lawID': str(lawOID)})
-	#return lawSentID	
+	#return lawSentID   
 	
 def findSent(sent_obj_id):
 	dbl = client['law_db']

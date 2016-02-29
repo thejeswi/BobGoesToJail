@@ -13,9 +13,11 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="/static/bootstrap.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="/static/sb-admin.css" rel="stylesheet">
+    
+    <!-- Pseudological CSS -->
+    <link href="/static/pl_style.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="/static/morris.css" rel="stylesheet">
@@ -30,9 +32,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-    html, body{
-        overflow-y:hidden;
-      height:100%;
+    html, body {
+        width:100%;
+        overflow-x:hidden;
+    }
+    .sentence {
+        overflow-x: scroll;
     }
     </style>
 </head>
@@ -155,19 +160,16 @@
                     <li class="active">
 -->
                     <li>
-                        <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="/judge"><i class="fa fa-fw fa-rocket"></i> Judger</a>
                     </li>
                     <li>
-                        <a href="/judge"><i class="fa fa-fw fa-bar-chart-o"></i> Judger</a>
+                        <a href="/parse_trees"><i class="fa fa-fw fa-tree"></i> Parse trees</a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-fw fa-table"></i> Law parse trees</a>
+                        <a href="/pseudological"><i class="fa fa-fw fa-tasks"></i> Pseudological</a>
                     </li>
                     <li>
-                        <a href="/pseudological"><i class="fa fa-fw fa-edit"></i>Pseudological</a>
-                    </li>
-                    <li>
-                        <a href=""><i class="fa fa-fw fa-desktop"></i> Law corpus</a>
+                        <a href="/law_corpus"><i class="fa fa-fw fa-file-code-o"></i> Law corpus</a>
                     </li>
 <!--
                     <li>

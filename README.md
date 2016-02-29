@@ -4,8 +4,6 @@
 Welcome! Thank you for using BobGoesToJail?
 We hope you don't go to jail.
 
-
-
 # Installation Requirements:
 0. Clone BobGoesToJail using `git clone git@code.fg-tech.de:thejeswi/BobGoesToJail.git`
 1. Mongo server running on 'localhost', port: 27017
@@ -30,7 +28,7 @@ We hope you don't go to jail.
 6. Other package requirements: python-dev, curl
 
 # Run instructions:
-* To run the judging program, use python `run.py`
+* To run the judging program, use python `run.py`, use a browser to go to `localhost:7070`
 * For obtaining the Psuedo Logical form of the law for your own corpus, follow these steps:
     1. Get the law corpus as `txt` files into BobGoesToJail/corpus/lawTexts_en
     2. Run `python BobGoesToJail/lawSplitter.py`
