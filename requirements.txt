@@ -6,6 +6,7 @@ defusedxml==0.4.1
 docutils==0.12
 enum==0.4.6
 Flask==0.10.1
+ftfy==4.1.0
 httpretty==0.8.10
 itsdangerous==0.24
 Jinja2==2.7.3

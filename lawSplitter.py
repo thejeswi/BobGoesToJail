@@ -182,9 +182,10 @@ client = MongoClient('localhost', 27017)
 db = client['law_db']
 laws_db = db.laws
 
+import ftfy
 for filename in glob.glob(os.path.join(path, '*.txt')):
     print filename
     fTxt = open(filename)
     #fTxt = open(path + "/109k.txt")
-    parseLaw(fTxt.read())   
+    parseLaw(ftfy.fixes.replace_lossy_sequences(fTxt.read()))   
     fTxt.close()   

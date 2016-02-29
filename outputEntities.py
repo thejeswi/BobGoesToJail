@@ -37,12 +37,12 @@ if new:
 	db = client['law_db']
 	db_ent = db.semantic_sent
 else:
-	db = client['tree2relations']
+	db = client['semantic_sent']
 	db_ent = db.entities
 
 db_laws = db.laws
 	
-outF = open('/var/www/html/out.html', "w")
+outF = open('./outEntities/out.html', "w")
 outF.write(htmlHead)
 
 def printColor(text, color):

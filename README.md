@@ -26,7 +26,9 @@ We hope you don't go to jail.
 4. Python libraries required are listed on requirements.txt
     * Use `pip install -r requirements.txt` to install them.
 
-5. Other package requirements: python-dev, curl
+5. Use `python` import NLTK and use nltk.download() to download WordNet.
+
+6. Other package requirements: python-dev, curl
 
 # Run instructions:
 * To run the judging program, use python `run.py`
@@ -36,6 +38,7 @@ We hope you don't go to jail.
     3. Run `python BobGoesToJail/filters/text2parse/run.py`
     4. Run `python BobGoesToJail/filters/parse2predicate/run.py insert`
     5. Run `python BobGoesToJail/filters/simpleLawFinder/run.py`
+* To generate the synonyms list required for Judging, run `python BobGoesToJail/judge/synList.py`.
 
 # Major Modules:
 ## Filters
