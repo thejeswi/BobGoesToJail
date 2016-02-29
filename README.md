@@ -1,4 +1,4 @@
-#Bob goes to jail?
+# Bob goes to jail?
 ##A semantic Law Interpreter
 
 Welcome! Thank you for using BobGoesToJail?
