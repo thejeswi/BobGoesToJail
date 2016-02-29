@@ -31,11 +31,11 @@ We hope you don't go to jail.
 # Run instructions:
 * To run the judging program, use python `run.py`
 * For obtaining the Psuedo Logical form of the law for your own corpus, follow these steps:
-    1. Get the law corpus in a `txt` file.
-    2. Run `python lawSplitter.py` from `BobGoesToJail/`
-    3. Run `python run.py` from `BobGoesToJail/filters/text2parse`
-    4. Run `python run.py insert` from `BobGoesToJail/filters/parse2predicate`
-    5. Run `python run.py` from `BobGoesToJail/filters/simpleLawFinder`
+    1. Get the law corpus as `txt` files into BobGoesToJail/corpus/lawTexts_en
+    2. Run `python BobGoesToJail/lawSplitter.py`
+    3. Run `python BobGoesToJail/filters/text2parse/run.py`
+    4. Run `python BobGoesToJail/filters/parse2predicate/run.py insert`
+    5. Run `python BobGoesToJail/filters/simpleLawFinder/run.py`
 
 # Major Modules:
 ## Filters
