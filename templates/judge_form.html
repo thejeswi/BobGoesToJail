@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+{% block body %}
+         <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Judger - Input
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+        <div class="row">
+                    <div class="col-lg-12">
+                        <p class="lead">Example Inputs</p>
+                        <ul>
+                            <li>Bob negligently induces physical harms to another human</li>
+                            <li>Bob killed a human by carelessness</li>
+                            <li>Bob disparages memory of a dead person</li>
+                            <li>Bob knowingly interrupts a burial</li>
+                        </ul>
+                        <p class="lead">Please input case:</p>
+                        <form action="/judge" method="post">
+                        <div class="form-group">
+                        <textarea class="form-control" rows="1" name="inputCase"></textarea>
+                        <br/>
+                        <button class="btn btn-lg btn-default" type="submit">Judge!</button>
+                        </form>
+                        </div>
+                    </div>
+        </div>
+      
+{% endblock %}

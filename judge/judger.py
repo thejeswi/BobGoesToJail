@@ -272,7 +272,7 @@ def run(case):
 	if checkCaseInput(case):
 		relLaws = getRelevantLaws(case)
 		applicableLaws = verifiyLaws(case, relLaws)
-		
+		judgement = list()
 		# Finally print the whole law check
 		for i in range(4):
 			print "-------------------------------------------------------------"
@@ -280,14 +280,17 @@ def run(case):
 		
 		if len(applicableLaws) == 0:
 			print "No matching laws found. Sorry..."
-			return
+			return None
 		
 		for i, [lawNum, result, truthTable, matchTable] in enumerate(applicableLaws):
 			print str(i+1) + ".", red, '§' + str(lawNum), "applies and the following should apply:", result , black
-			
 			print yellow, "Facts:", black
+			facts = list()
 			for act, entText in matchTable:
 					print act, "=>", entText
+					facts.append([act,entText])
+			judgement.append({"lawNum":lawNum, "result":result, "facts":facts, "truthTable":truthTable})
+		return judgement
 		
 if __name__ == "__main__":
 	# Bob hits John several times. John suffers thereby a laceration on his head, which is associated with severe pain. Bob just wanted explicit to injure John with the beatings.
