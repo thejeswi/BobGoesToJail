@@ -1,21 +1,21 @@
 # Bob goes to jail?
-##A semantic Law Interpreter
+## A semantic Law Interpreter
 
 Welcome! Thank you for using BobGoesToJail?
 We hope you don't go to jail.
 
 To run the judging program, use python runJudger.py
 
-#Requirements:
+# Requirements:
 * Mongo server running on 'localhost', port: 27017
 * coreNLP server running on 'localhost', port: 3456
 * Word2Vec server running 'localhost', port: 9090
 * Python libraries required are listed on requirements.txt
     Use "pip install -r requirements.txt" to install them.
 
-#Major Modules:
-##Filters
-###Things which convert one data format to another.
+# Major Modules:
+## Filters
+### Things which convert one data format to another.
 It includes different filter which convert german law text files to a pseudo semantic form, one step a time.
 Each of the below mentioned modules have a run.py file.
 Modules which do it are:
@@ -27,16 +27,16 @@ Modules which do it are:
 * simpleLawFinder: Finds simple laws which has no sublaws and store them to text files.
     To use run: python run.py
 
-##Database
-###Schema related things
+## Database
+### Schema related things
 Has schema files which are used by different modules. It is used to enforce uniformity in the database.
 
-##Corpus
-###The raw law texts
+## Corpus
+### The raw law texts
 Nothing to run here.
 Contains all the text files extracted for the source law text file.
 
-#Judge
-###The judging process
+# Judge
+### The judging process
 Contains all the scripts which are used for running the judging framework.
 Nothing to directly run here. Use runJudger in the project root to use the judger.
