@@ -1,0 +1,34 @@
+span#Unary {
+	background-color:#66B2FF;
+}
+
+span#Binary {
+	background-color:#FF6666;
+}
+
+span#Func {
+	background-color:#FFFF00;
+}
+
+span#ADV {
+	background-color:#FF2200;
+}
+
+span#To {
+	background-color:#FF9900;
+}
+
+span.entity {
+	margin-right:5px;
+	/*background-color:#A4A4A4;*/
+}
+
+/*span#FuncU:after{
+	content: "|";
+}*/
+
+div.sentence {
+	background-color:#E0E0E0;
+	padding:10px;
+	margin-bottom:10px;
+}
