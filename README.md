@@ -4,7 +4,7 @@
 Welcome! Thank you for using BobGoesToJail?
 We hope you don't go to jail.
 
-To run the judging program, use python runJudger.py
+To run the judging program, use python `runJudger.py`
 
 
 # Installation Requirements:
@@ -30,15 +30,15 @@ To run the judging program, use python runJudger.py
 ## Filters
 ### Things which convert one data format to another.
 It includes different filter which convert german law text files to a pseudo semantic form, one step a time.
-Each of the below mentioned modules have a run.py file.
 Modules which do it are:
 * corpus2db: Inserts content pf splitted law text file to database. Also stores the Law number of the law and other attributes.
-    This function module is now decaprecated. Use lawSplitter.py in the project root folder.
+    This module is now decaprecated. *Use `python lawSplitter.py` in the project root folder.*
 * text2parse: Use law texts to get parse trees of each sentence.
-    To use run: python run.py
-* parse2predicate: Extracts predicates from parse trees of laws in the database. To insert to database, use: python run.py insert
+    To use run: `python run.py`
+* parse2predicate: Extracts predicates from parse trees of laws in the database.
+    To insert to database, use: `python run.py insert`
 * simpleLawFinder: Finds simple laws which has no sublaws and store them to text files.
-    To use run: python run.py
+    To use run: `python run.py`
 
 ## Database
 ### Schema related things
