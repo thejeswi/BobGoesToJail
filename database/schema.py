@@ -5,7 +5,7 @@ from enum import Enum
 
 ###### Splitted Law Objects ###################
 
-class SentTypes(Enum):
+class SentTypes:
     Undefined = 0
     BeginSent = 1
     NumberSent = 2

@@ -5,8 +5,8 @@ from __future__ import absolute_import
 #~ from schema import *
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-from finder_client import get_relavent_laws, get_similarity
-from pseudological import filterSents, textFuncFinder
+from .finder_client import get_relavent_laws, get_similarity
+from .pseudological import filterSents, textFuncFinder
 
 red = "\x1b[31m"
 black = "\x1b[0m"
@@ -91,8 +91,8 @@ def similarityCheck(actText, entText):
 	if debug:
 		if out:
 			print green, "Entity", entText, "matches action:", "Score:", score, actText, black
-		else:
-			print green, "Entity", entText, "not matches action:", actText, "Score:", score, black	
+		#~ else:
+			#~ print green, "Entity", entText, "not matches action:", actText, "Score:", score, black	
 	return out
 	
 def personCheck(persons, entText):
@@ -210,7 +210,9 @@ def verifiyLaws(case, laws):
 
 		for (premise, result) in premiseResultFormulas:
 			
-			print "Evaluating premise:", premise
+			print "Evaluating premise:"
+			from pprint import pprint
+			pprint(premise)
 			
 			truthTable = []
 			matchTable = []
@@ -246,7 +248,9 @@ def verifiyLaws(case, laws):
 			
 			premiseEval = premiseToEvalString(premise)
 
-			print "TruthTable:", truthTable
+			from pprint import pprint
+			print "TruthTable:"
+			pprint(truthTable)
 			E = [val for (txt, val) in truthTable] # setting up eval variables
 
 			print yellow, "Premise boolean formula:", premiseEval, black
@@ -297,9 +301,9 @@ if __name__ == "__main__":
 
 	#works
 	#RelevantLaw: 167a
-	#case = { "Persons" : ["Bob"], 
-	#		"Action": {	"Bob" : ["knowingly", "interrupts", "a burial"]}, 
-	#		"Act" : "Bob knowingly interrupts a burial"}
+	case = { "Persons" : ["Bob"], 
+			"Action": {	"Bob" : ["knowingly", "interrupts", "a burial"]}, 
+			"Act" : "Bob knowingly interrupts a burial"}
 
 	#works (no match should be found)
 	#case = { "Persons" : ["Bob"], 

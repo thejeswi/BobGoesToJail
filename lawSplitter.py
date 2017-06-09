@@ -2,6 +2,7 @@ import nltk
 import re
 import glob
 import os
+from database.schema import *
 
 #define colors
 red = "\x1b[31m"
@@ -9,7 +10,6 @@ black = "\x1b[0m"
 grey = "\x1b[30m"
 
 def parseLaw(lawTxt):
-
     # title, {law, subsection, sentence}
     splLines = lawTxt.split('\n')
 
@@ -46,16 +46,21 @@ def parseLaw(lawTxt):
         mySent.sentType = sentType
         mySent.lawID = lawID
         mySent.parentSentID = parentID
-	print red, mySent.parentSentID, black
+        print red, mySent.parentSentID, black
+        ####
+        #~ from pprint import pprint
+        #~ pprint(mySent.out())
+        #~ import pdb
+        #~ pdb.set_trace()
+        ####
         return laws_db.insert_one(mySent.out()).inserted_id
 
     for line in lawLines:
-	
         if len(line) == 0 or re.search(r"^ *$", line):
             continue
 
-        print "Inp:" , line
-
+        print "Input:" , line
+        
         #################################################
         # Re-union non finished sentences
         if nonFinishedSent:

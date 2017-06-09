@@ -53,6 +53,7 @@ def similarity_finder(model, word1, word2):
     #~ return {"match":list(set(matchedEnts)), "rel":relaventEnts}
 
 if __name__ == "__main__":
+    from law_matcher import synListGen
     #~ print law_matcher()
     #~ synListGen("56a20259a18bdf3fadda90a8")
     for s in synListGen("56a20259a18bdf3fadda90a8"):

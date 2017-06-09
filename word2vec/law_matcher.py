@@ -49,15 +49,16 @@ def law_matcher(model, inputCase):
                 matchedLaws.append(sentID)
             if similarity > 0.5:
                 if sentID not in relaventLaws:
-                    print "Matched", cWord, sWord
+                    #~ print "Matched", cWord, sWord
                     relaventLaws[sentID] = 0
                     wordCount[sentID] = 0
                 relaventLaws[sentID] += similarity
-                wordCount[sentID] += 1
+                wordCount[sentID] += 1 
     #Normalization
     for key, value in relaventLaws.iteritems():
-        print relaventLaws[key]
         relaventLaws[key] = relaventLaws[key].astype(float) / wordCount[key]
+    from pprint import pprint
+    pprint({"match":list(set(matchedLaws)), "rel":relaventLaws})
     return {"match":list(set(matchedLaws)), "rel":relaventLaws}
 
 if __name__ == "__main__":

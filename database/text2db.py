@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from schema import raw_law
+from schema import law
 from os import walk
 
 client = MongoClient()
@@ -10,7 +10,7 @@ for (dirpath, dirnames, filenames) in walk(corpus_path):
     #List all the text files in the corpus path
     for one_file in filenames:
         if one_file[-3:] == "txt":
-            new_law = raw_law()
+            new_law = law()
             new_law.num = one_file.split(".")[0]
             law_file = open(corpus_path+"/"+one_file)
             new_law.title = law_file.readline().strip()
