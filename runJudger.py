@@ -71,7 +71,9 @@ if __name__ == "__main__":
     print "Example input: Bob causes death of a human through carelessness\nPlease input a case:"
     #inputCase = raw_input()
     
-    inputCase = "Bob negligently induces physical harms to another human" # works
+    inputCase = "Bob walks on the Great wall of china" 
+    #~ inputCase = "A human was killed of negligence by Bob" 
+    #~ inputCase = "Bob negligently induces physical harms to another human" # works
     #inputCase = "Bob killed a human by carelessness"  # works
     #inputCase = "Bob knowingly interrupts a burial" # works
     #inputCase = "Bob unknowingly interrupts a burial" # if it works, it should find nothing

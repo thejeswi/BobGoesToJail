@@ -50,18 +50,28 @@
                         </p>
                             {% endfor %}
                              {% else %}
-                             <h2>No judgement found!</h2>
+                             <h2>I can't pass a judegment! D:</h2>
                              {% endif %}
                         </div>
                         </div>
                     </div>
-        </div>
-{% endblock %}
-
-                        <div class="panel panel-green"><div class="panel-heading"><h3 class="panel-title">Panel title</h3>
+        {% if relavent_laws is not none %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Relavent laws</h2>
+                {% for rlaw in relavent_laws %}
+                    <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">§{{ rlaw[0]|e  }}</h3>
                             </div>
                             <div class="panel-body">
-                                Panel content
+                                <p>{{ rlaw[1] }}</p>
                             </div>
                         </div>
-                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+{% endblock %}
+
+                        

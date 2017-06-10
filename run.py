@@ -1,9 +1,14 @@
+#!/usr/bin/env python
+# coding: utf8
+
 from flask import Flask
 from flask import render_template,request, redirect,url_for
 import runJudger
 from pymongo import MongoClient
 from pprint import pformat
 from nltk import Tree
+import os
+from judge.judger import getLawInfo
 
 app = Flask(__name__)
 client = MongoClient()
@@ -45,9 +50,23 @@ def judge():
         return render_template('judge_form.html')
     else:
         inputCase = request.form['inputCase']
+        os.system('clear')
+        print "\n\n\n"
         judgements = runJudger.run(inputCase)
-        return render_template('judge_result.html', inputCase = inputCase, judgements=judgements)
+        relavent_laws_raw = judgements[1]
+        
+        relavent_laws = []
+        for rlaw in relavent_laws_raw:
+            law_title = getLawInfo(rlaw[1]["lawID"])
+            law_title = law_title[0]+": "+law_title[1]
+            relavent_laws.append((law_title, rlaw[1]["text"]))
+        print relavent_laws
+        
+        
+        judgements = judgements[0]
+        return render_template('judge_result.html', inputCase = inputCase, \
+            judgements=judgements, relavent_laws=relavent_laws)
 
 
 if __name__ == "__main__":
-    app.run(host= '0.0.0.0',port= 7070)
+    app.run(host= '0.0.0.0',port= 7070, debug=True)
