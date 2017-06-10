@@ -7,7 +7,7 @@ import gensim
 app = Flask(__name__)
 
 print "Started loading"
-model = gensim.models.KeyedVectors.load_word2vec_format('./GoogleNews-vectors-negative300.bin.gz', binary=True)
+model = gensim.models.KeyedVectors.load_word2vec_format('./GoogleNews-vectors-negative300-SLIM.bin.gz', binary=True)
 print "Done loading"
 import logging
 log = logging.getLogger('werkzeug')
