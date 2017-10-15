@@ -1,0 +1,7 @@
+["if",  "FunctionOperation"], 
+["then",  "FunctionOperation"], 
+["else if",  "FunctionOperation"], 
+["or",  "FunctionOperation"], 
+["and",  "FunctionOperation"], 
+["even if",  "FunctionOperation"], 
+["only if",  "FunctionOperation"],
