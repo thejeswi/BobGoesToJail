@@ -195,6 +195,7 @@ def premiseToEvalString(premise):
     return ' '.join(outputStr)
     
 def verifiyLaws(case, laws):
+    "Does the actual Boolean matching of case law text and input case text"
     applicableLaws = []
     for sent in laws:
         
@@ -213,6 +214,7 @@ def verifiyLaws(case, laws):
         print "Checking", "SentID", sentID
         
         # Check if we have a Whoever sentence and action based on an actor (Bob)
+        # TODO Have to add support laws which support other laws!
         if not 'Whoever' in text or not "Bob" in actions:
             if debug:
                 print red, 'Unsupported law:', black, sentID
@@ -231,6 +233,7 @@ def verifiyLaws(case, laws):
                 entType = ent[1]
             
                 if entType == "Func":
+                    # TODO add the function to OPERATE on the truth table
                     continue
             
                 done = False
