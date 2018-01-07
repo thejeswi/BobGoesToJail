@@ -1,9 +1,6 @@
 # Bob goes to jail?
 ## A semantic Law Interpreter
-
-Welcome! Thank you for using BobGoesToJail?
-We hope you don't go to jail.
-
+BobGoesToJail is a semantic law interpreter for the English translations for the German criminal law. Corpus downloaded from: http://www.gesetze-im-internet.de/englisch_stgb/englisch_stgb.html
 # Installation Requirements:
 0. Clone BobGoesToJail using `git clone git@code.fg-tech.de:thejeswi/BobGoesToJail.git`
 1. Mongo server running on 'localhost', port: 27017
